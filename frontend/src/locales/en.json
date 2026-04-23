@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "login": "Log in",
+    "signup": "Create account",
+    "brand": "Logopedie",
+    "tagline": "Reading & Writing AI",
+    "features": "Features",
+    "howItWorks": "How it works",
+    "editor": "Editor",
+    "logout": "Log out",
+    "myProfile": "My profile",
+    "settings": "Settings",
+    "myDocuments": "My documents"
+  },
+  "auth": {
+    "loginTab": "Log in",
+    "signupTab": "Sign up",
+    "welcomeBack": "Welcome back!",
+    "createAccount": "Create account",
+    "email": "Email address",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "loginBtn": "Log in →",
+    "loggingIn": "Logging in...",
+    "continueWith": "or continue with",
+    "continueGoogle": "Continue with Google",
+    "nom": "Last name",
+    "prenom": "First name",
+    "accountType": "Account type",
+    "student": "Student",
+    "client": "Client",
+    "confirmPassword": "Confirm password",
+    "createBtn": "Create my account",
+    "creating": "Creating account...",
+    "passwordMatch": "Passwords match",
+    "passwordNoMatch": "Passwords do not match",
+    "successCreated": "Account created successfully!",
+    "next": "Next",
+    "back": "Back",
+    "stepInfo": "Information",
+    "stepSubscription": "Subscription",
+    "stepPayment": "Payment",
+    "chooseDuration": "Simply choose your duration",
+    "includedFeatures": "Included in all plans",
+    "summary": "Summary",
+    "billing": "Billing",
+    "cardNumber": "Card number",
+    "cardName": "Name on card",
+    "expiry": "Expiry date (MM/YY)",
+    "errorCreate": "Error creating account",
+    "chooseSubscription": "Choose your subscription",
+    "paymentInfo": "Payment information",
+    "fillInfo": "Enter your personal information",
+    "choosePlan": "Select the plan and duration that suits you",
+    "finalizeSecure": "Finalize your registration securely",
+    "errorEmail": "This email does not exist",
+    "errorPassword": "Incorrect password",
+    "errorLogin": "Login error",
+    "errorServer": "Unable to connect to server. Make sure the backend is running on port 3001.",
+    "features": [
+      "Audio reading with highlighting",
+      "OpenDyslexic font",
+      "Color overlay",
+      "Smart writing assistance",
+      "AI summary",
+      "Discreet professional mode",
+      "Adjustable text spacing",
+      "Access on all devices"
+    ]
+    ,
+    "verifyEmailTitle": "Verify your email",
+    "verifyEmailSentTo": "A confirmation link has been sent to",
+    "verifyEmailClick": "Click it to activate your account.",
+    "verifyLinkExpires": "The link expires in",
+    "hours": "hours",
+    "checkSpam": "Also check your spam folder.",
+    "photo": "Photo",
+    "photoAlt": "Profile photo",
+    "emailPlaceholder": "you@email.com",
+    "cardNamePlaceholder": "Jean Dupont",
+    "cvv": "CVV",
+    "pricePerMonth": "/ month · {{total}} € one-time",
+    "popularSave": "Popular · save {{amount}} €",
+    "bestPriceSave": "Best price · save {{amount}} €",
+    "popularBadge": "POPULAR",
+    "durations": {
+      "biannual": "6 months",
+      "annual": "1 year",
+      "biennial": "2 years"
+    },
+    "billing": {
+      "biannual": { "label": "6 Months", "suffix": "/ 6 months" },
+      "annual": { "label": "1 Year", "suffix": "/ year" },
+      "biennial": { "label": "2 Years", "suffix": "/ 2 years" }
+    },
+    "plans": {
+      "free": {
+        "description": "Discover what AI can do",
+        "features": ["Base model","Message limits","Limited image generation","Limited memory"]
+      },
+      "go": {
+        "description": "Keep chatting with extended access",
+        "features": ["Base model","Extended message limits","Extended image limits","Extended memory","Extended voice access"]
+      },
+      "plus": {
+        "description": "Enjoy the full experience",
+        "features": ["Advanced models","Higher limits","Fast image generation","Extended chat memory","Codex coding agent"]
+      },
+      "pro": {
+        "description": "Maximize your productivity",
+        "features": ["All Plus features","5x or 20x higher usage limit","Flagship Pro model","Max Codex access","Deep search"]
+      }
+    }
+  },
+  "home": {
+    "features": {
+      "badge": "Features",
+      "title": "Tools designed for you",
+      "subtitle": "Each feature has been designed with people with dyslexia to address real daily challenges.",
+      "items": [
+        { "title": "Audio Reading", "desc": "Text is read aloud with a natural voice. Follow each highlighted word visually." },
+        { "title": "Writing Assistance", "desc": "Smart corrections and suggestions tailored to common dyslexia errors." },
+        { "title": "Dyslexic Font", "desc": "Enable the OpenDyslexic font to anchor each letter visually and reduce confusion." },
+        { "title": "Color Overlay", "desc": "Overlay a colored tint on text to reduce visual fatigue and line dropping." },
+        { "title": "Text Spacing", "desc": "Adjust spacing between letters, words and lines for optimal comfort." },
+        { "title": "AI Summary", "desc": "Get a simplified summary of any long text in seconds using AI." }
+      ]
+    },
+    "steps": [
+      { "title": "Paste or write your text", "desc": "Import a document, paste text or start writing directly in the editor." },
+      { "title": "Choose your tools", "desc": "Enable audio reading, adjust the font or colors to your personal comfort." },
+      { "title": "Read and write better", "desc": "Enjoy an experience adapted to your pace, accessible anywhere, anytime." }
+    ],
+    "audiences": [
+      { "label": "Children", "age": "6 – 16 yrs", "points": ["Playful, colorful UI","Class mode for teachers","Guided reading exercises","Progress tracked with parents"] },
+      { "label": "Adults", "age": "17+", "points": ["Email & Word integration","Discreet professional mode","Long document summaries","Mobile use"] }
+    ],
+    "testimonials": [
+      { "role": "Mother of a dyslexic child", "text": "My 9-year-old regained the taste for reading thanks to the dyslexic font and audio reading. His grades improved in just 3 months." },
+      { "role": "Engineer, diagnosed at 28", "text": "Finally a tool that supports me at work without drawing attention. I write my reports much more calmly." },
+      { "role": "Primary school teacher", "text": "I use the app with my whole class. The color overlay transformed reading sessions for my special-needs students." }
+    ],
+    "stats": ["% of the population is dyslexic","users improve in 1 month","families supported"]
+  },
+  "predictor": {
+    "title": "Predictions",
+    "backend": "Backend NestJS",
+    "auto": "🌐 Auto",
+    "tool": { "picture": "Image", "correction": "Correction", "reading": "Reading", "settings": "Settings" },
+    "backendNotFound": "Backend not found (make sure NestJS runs on port 3001)",
+    "backendError": "Connection error to backend",
+    "correctionError": "Correction error. Make sure Ollama + Mistral are running.",
+    "correctionInProgress": "Correction in progress...",
+    "correctionTitle": "Corrected text",
+    "correctionApplyTooltip": "Click to apply the correction in the editor"
+  },
+  "profile": {
+    "title": "Profile",
+    "breadcrumb": "User Profile",
+    "home": "Home",
+    "profilePicture": "Profile Picture",
+    "uploadImage": "Upload new image",
+    "accountDetails": "Account Details",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "emailAddress": "Email address",
+    "newPassword": "New Password",
+    "passwordHint": "(leave blank to keep current)",
+    "saveChanges": "Save changes",
+    "saving": "Saving...",
+    "saveSuccess": "Profile updated successfully!",
+    "saveError": "Error updating profile",
+    "dangerZone": "Danger zone",
+    "deleteAccount": "Delete account",
+    "deleteConfirm": "Permanently delete your account?",
+    "backHome": "← Back to home"
+  },
+  "hero": {
+    "badge": "Artificial Intelligence for everyone",
+    "title1": "Read and write",
+    "title2": "without barriers",
+    "title3": "for everyone.",
+    "subtitle": "An intelligent app designed for people with dyslexia, children and adults alike — to read more easily, write with confidence and progress at your own pace.",
+    "cta": "Get started for free",
+    "demo": "Watch the demo",
+    "statsLine": "<b>50,000+</b> families supported ⭐ 4.9/5",
+    "toolbar": { "listen": "🔊 Listen", "font": "🔤 Font", "color": "🎨 Color" },
+    "dyslexia": { "parts": ["La ", "dyslexia ", "is a ", "difficulty ", "of learning "], "post": "that affects reading and writing. With the right tools, everyone can progress at their own pace." },
+    "readProgressLabel": "Reading progress",
+    "readMode": "📖 Reading mode"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

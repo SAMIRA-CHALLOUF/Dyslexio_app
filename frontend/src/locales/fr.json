@@ -1,0 +1,221 @@
+{
+  "nav": {
+    "login": "Se connecter",
+    "signup": "Créer un compte",
+    "brand": "Logopédie",
+    "tagline": "Lecture & Écriture IA",
+    "features": "Fonctionnalités",
+    "howItWorks": "Comment ça marche",
+    "editor": "Editeur",
+    "logout": "Déconnexion",
+    "myProfile": "Mon profil",
+    "settings": "Paramètres",
+    "myDocuments": "Mes documents"
+  },
+  "auth": {
+    "loginTab": "Se connecter",
+    "signupTab": "S'inscrire",
+    "welcomeBack": "Bon retour parmi nous !",
+    "createAccount": "Créer un compte",
+    "email": "Adresse email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "loginBtn": "Se connecter →",
+    "loggingIn": "Connexion en cours...",
+    "continueWith": "ou continuer avec",
+    "continueGoogle": "Continuer avec Google",
+    "nom": "Nom",
+    "prenom": "Prénom",
+    "accountType": "Type de compte",
+    "student": "Élève",
+    "client": "Client",
+    "confirmPassword": "Confirmer le mot de passe",
+    "createBtn": "Créer mon compte",
+    "creating": "Création du compte en cours...",
+    "passwordMatch": "Les mots de passe correspondent",
+    "passwordNoMatch": "Les mots de passe ne correspondent pas",
+    "successCreated": "Compte créé avec succès !",
+    "next": "Suivant",
+    "back": "Retour",
+    "stepInfo": "Informations",
+    "stepSubscription": "Abonnement",
+    "stepPayment": "Paiement",
+    "chooseDuration": "Choisissez simplement la durée",
+    "includedFeatures": "Inclus dans tous les forfaits",
+    "summary": "Récapitulatif",
+    "billing": "Facturation",
+    "cardNumber": "Numéro de carte",
+    "cardName": "Nom sur la carte",
+    "expiry": "Date d'expiration (MM/AA)",
+    "errorCreate": "Erreur lors de la création du compte",
+    "chooseSubscription": "Choisir votre abonnement",
+    "paymentInfo": "Informations de paiement",
+    "fillInfo": "Renseignez vos informations personnelles",
+    "choosePlan": "Sélectionnez le forfait et la durée qui vous conviennent",
+    "finalizeSecure": "Finalisez votre inscription en toute sécurité",
+    "errorEmail": "Cet email n'existe pas",
+    "errorPassword": "Mot de passe incorrect",
+    "errorLogin": "Erreur lors de la connexion",
+    "errorServer": "Impossible de se connecter au serveur. Vérifiez que le backend tourne sur le port 3001.",
+    "features": [
+      "Lecture audio avec surbrillance",
+      "Police OpenDyslexic",
+      "Overlay de couleur",
+      "Aide à l'écriture intelligente",
+      "Résumé IA",
+      "Mode professionnel discret",
+      "Espacement du texte ajustable",
+      "Accès sur tous appareils"
+    ]
+    ,
+    "verifyEmailTitle": "Vérifiez votre email",
+    "verifyEmailSentTo": "Un lien de confirmation a été envoyé à",
+    "verifyEmailClick": "Cliquez dessus pour activer votre compte.",
+    "verifyLinkExpires": "Le lien expire dans",
+    "hours": "heures",
+    "checkSpam": "Vérifiez aussi vos spams.",
+    "photo": "Photo",
+    "photoAlt": "Photo de profil",
+    "emailPlaceholder": "votre@email.com",
+    "cardNamePlaceholder": "Jean Dupont",
+    "cvv": "CVV",
+    "pricePerMonth": "/ mois · {{total}} € en une fois",
+    "popularSave": "Populaire · économisez {{amount}} €",
+    "bestPriceSave": "Meilleur prix · économisez {{amount}} €",
+    "popularBadge": "POPULAIRE",
+    "durations": {
+      "biannual": "6 mois",
+      "annual": "1 an",
+      "biennial": "2 ans"
+    },
+    "billing": {
+      "biannual": {
+        "label": "6 Mois",
+        "suffix": "/ 6 mois"
+      },
+      "annual": {
+        "label": "1 An",
+        "suffix": "/ an"
+      },
+      "biennial": {
+        "label": "2 Ans",
+        "suffix": "/ 2 ans"
+      }
+    },
+    "plans": {
+      "free": {
+        "description": "Découvrez ce que l'IA peut faire",
+        "features": ["Modèle de base", "Limites pour les messages", "Création d'images limitée", "Mémoire limitée"]
+      },
+      "go": {
+        "description": "Continuez à discuter avec un accès étendu",
+        "features": ["Modèle de base", "Limites étendues pour les messages", "Limites étendues pour les images", "Mémoire étendue", "Accès étendu au mode vocal"]
+      },
+      "plus": {
+        "description": "Bénéficiez d'une expérience complète",
+        "features": ["Modèles avancés", "Limites plus étendues", "Création d'images rapide", "Mémoire étendue dans les chats", "Agent de codage Codex"]
+      },
+      "pro": {
+        "description": "Maximisez votre productivité",
+        "features": ["Toutes les fonctionnalités Plus", "Limite d'utilisation 5x ou 20x plus élevée", "Modèle phare Pro", "Accès maximal à Codex", "Recherche approfondie maximale"]
+      }
+    }
+  },
+  "home": {
+    "features": {
+      "badge": "Fonctionnalités",
+      "title": "Des outils pensés pour vous",
+      "subtitle": "Chaque fonctionnalité a été conçue avec des personnes dyslexiques pour répondre aux vrais défis du quotidien.",
+      "items": [
+        { "title": "Lecture Audio", "desc": "Le texte est lu à voix haute avec une voix naturelle. Suivez visuellement chaque mot mis en surbrillance." },
+        { "title": "Aide à l'écriture", "desc": "Corrections intelligentes et suggestions adaptées aux erreurs fréquentes liées à la dyslexie." },
+        { "title": "Police Dyslexique", "desc": "Activez la police OpenDyslexic conçue pour ancrer visuellement chaque lettre et réduire la confusion." },
+        { "title": "Overlay de Couleur", "desc": "Superposez une teinte colorée sur le texte pour réduire la fatigue visuelle et le décrochage des lignes." },
+        { "title": "Espacement du Texte", "desc": "Ajustez librement les espacements entre lettres, mots et lignes pour un confort optimal." },
+        { "title": "Résumé IA", "desc": "Obtenez un résumé simplifié de n'importe quel texte long en quelques secondes grâce à l'IA." }
+      ]
+    },
+    "steps": [
+      { "title": "Collez ou écrivez votre texte", "desc": "Importez un document, collez du texte ou commencez à écrire directement dans l'éditeur." },
+      { "title": "Choisissez vos outils", "desc": "Activez la lecture audio, ajustez la police ou les couleurs selon votre confort personnel." },
+      { "title": "Lisez et écrivez mieux", "desc": "Profitez d'une expérience adaptée à votre rythme, accessible partout et à tout moment." }
+    ],
+    "audiences": [
+      { "label": "Enfants", "age": "6 – 16 ans", "points": ["Interface ludique et colorée","Mode classe pour les enseignants","Exercices de lecture guidés","Progrès suivis avec les parents"] },
+      { "label": "Adultes", "age": "17 ans et plus", "points": ["Intégration email et Word","Mode professionnel discret","Résumés de documents longs","Utilisation en mobilité"] }
+    ],
+    "testimonials": [
+      { "role": "Mère d'un enfant dyslexique", "text": "Mon fils de 9 ans a retrouvé le goût de lire grâce à la police dyslexique et à la lecture audio. En seulement 3 mois, ses notes ont progressé." },
+      { "role": "Ingénieur, diagnostiqué à 28 ans", "text": "Enfin un outil qui m'accompagne au travail sans attirer l'attention. Je rédige mes rapports bien plus sereinement." },
+      { "role": "Enseignante CP", "text": "J'utilise l'application avec toute ma classe. L'overlay de couleur a transformé les séances de lecture pour mes Organisations à besoins spécifiques." }
+    ],
+    "stats": [
+      "de la population est dyslexique",
+      "des utilisateurs progressent en 1 mois",
+      "familles accompagnées"
+    ]
+  },
+  "hero": {
+    "badge": "Intelligence Artificielle au service de tous",
+    "title1": "Lire et écrire",
+    "title2": "sans barrières",
+    "title3": "pour chacun.",
+    "subtitle": "Une application intelligente pensée pour les personnes dyslexiques, enfants comme adultes — pour lire plus facilement, écrire avec confiance et progresser à son propre rythme.",
+    "cta": "Commencer gratuitement",
+    "demo": "Voir la démo",
+    "statsLine": "<b>50 000+</b> familles accompagnées ⭐ 4.9/5",
+    "toolbar": {
+      "listen": "🔊 Écouter",
+      "font": "🔤 Police",
+      "color": "🎨 Couleur"
+    },
+    "dyslexia": {
+      "parts": ["La ", "dyslexie ", "est une ", "difficulté ", "d'apprentissage "],
+      "post": "qui touche la lecture et l'écriture. Avec les bons outils, chacun peut progresser à son rythme."
+    },
+    "readProgressLabel": "Progression de lecture",
+    "readMode": "📖 Mode Lecture"
+  },
+  "predictor": {
+    "title": "Prédictions",
+    "backend": "Backend NestJS",
+    "auto": "🌐 Auto",
+    "tool": {
+      "picture": "Image",
+      "correction": "Correction",
+      "reading": "Lecture",
+      "settings": "Configuration"
+    },
+    "backendNotFound": "Backend non trouvé (vérifie que NestJS tourne sur port 3001)",
+    "backendError": "Erreur de connexion au backend",
+    "correctionError": "Erreur lors de la correction. Vérifie que Ollama + Mistral sont lancés.",
+    "correctionInProgress": "Correction en cours...",
+    "correctionTitle": "Texte corrigé",
+    "correctionApplyTooltip": "Cliquer pour appliquer la correction dans l'éditeur"
+  },
+  "profile": {
+    "title": "Profile",
+    "breadcrumb": "User Profile",
+    "home": "Home",
+    "profilePicture": "Photo de profil",
+    "uploadImage": "Changer la photo",
+    "accountDetails": "Informations du compte",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "emailAddress": "Adresse email",
+    "newPassword": "Nouveau mot de passe",
+    "passwordHint": "(laisser vide pour ne pas changer)",
+    "saveChanges": "Sauvegarder",
+    "saving": "Sauvegarde...",
+    "saveSuccess": "Profil mis à jour avec succès !",
+    "saveError": "Erreur lors de la mise à jour",
+    "dangerZone": "Zone dangereuse",
+    "deleteAccount": "Supprimer le compte",
+    "deleteConfirm": "Supprimer votre compte définitivement ?",
+    "backHome": "← Retour à l'accueil"
+  },
+  
+  "footer": {
+    "rights": "Tous droits réservés."
+  }
+}
