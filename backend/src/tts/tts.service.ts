@@ -17,11 +17,12 @@ const PIPER_EXE = path.join(PIPER_DIR, 'piper.exe');
 // Dictionnaire associant chaque langue à son modèle linguistique binaire pré-entraîné (.onnx)
 const VOICE_MODELS: Record<string, string> = {
   en: path.join(PIPER_DIR, 'models', 'en_US-lessac-medium.onnx'),
-  fr: path.join(PIPER_DIR, 'models', 'fr_FR-upmc-medium.onnx'),
+  fr: path.join(PIPER_DIR, 'models', 'fr_FR-siwis-low.onnx'),
   it: path.join(PIPER_DIR, 'models', 'it_IT-riccardo-x_low.onnx'),
   es: path.join(PIPER_DIR, 'models', 'es_ES-sharvard-medium.onnx'),
   de: path.join(PIPER_DIR, 'models', 'de_DE-thorsten-high.onnx'),
 };
+
 
 // Interface définissant le contrat de données (payload) envoyé par le front-end
 export interface TtsOptions {

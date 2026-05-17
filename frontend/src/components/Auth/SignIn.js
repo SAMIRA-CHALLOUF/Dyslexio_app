@@ -1,5 +1,6 @@
 // src/components/Auth/SignIn.js
 import React, { useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { TEAL } from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 
@@ -27,7 +28,11 @@ const labelStyle = {
 };
 
 const SignIn = ({ onSubmit, loading = false, error = '' }) => {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const justVerified = searchParams.get('verified') === 'true';
+
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPass, setShowPass] = useState(false);
 
@@ -46,6 +51,31 @@ const SignIn = ({ onSubmit, loading = false, error = '' }) => {
 
   return (
     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+      {/* ✅ Message vérification email réussie */}
+      {justVerified && (
+        <div style={{
+          background: '#E1F5EE',
+          border: '1px solid #0D937340',
+          borderRadius: 12,
+          padding: '12px 16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          fontSize: 13,
+          color: '#0F6E56',
+          fontWeight: 600,
+          fontFamily: "'Nunito', sans-serif",
+        }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="#0D9373" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            style={{ flexShrink: 0 }}>
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Email vérifié avec succès ! Connectez-vous maintenant.
+        </div>
+      )}
 
       {/* Email */}
       <div>
@@ -66,7 +96,11 @@ const SignIn = ({ onSubmit, loading = false, error = '' }) => {
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
           <label style={{ ...labelStyle, marginBottom: 0 }}>{t('auth.password')}</label>
-          <span style={{ fontSize: 12, color: TEAL, fontWeight: 600, cursor: 'pointer' }}>
+          {/* ✅ Lien mot de passe oublié */}
+          <span
+            onClick={() => navigate('/forgot-password')}
+            style={{ fontSize: 12, color: TEAL, fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}
+          >
             {t('auth.forgotPassword')}
           </span>
         </div>
@@ -81,7 +115,6 @@ const SignIn = ({ onSubmit, loading = false, error = '' }) => {
             disabled={loading}
             style={{ ...inputStyle, paddingRight: 44, borderColor: error ? '#ef4444' : '#e2e8f0' }}
           />
-          {/* Toggle password — SVG eye icon, no emoji */}
           <button
             type="button"
             onClick={() => setShowPass(p => !p)}
@@ -138,7 +171,7 @@ const SignIn = ({ onSubmit, loading = false, error = '' }) => {
         <div style={{ flex: 1, height: 1, background: '#e2e8f0' }} />
       </div>
 
-      {/* Google — SVG icon, no emoji */}
+      {/* Google */}
       <button
         type="button"
         style={{

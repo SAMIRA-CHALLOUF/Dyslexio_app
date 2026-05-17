@@ -1,8 +1,10 @@
 // pages/Editor.jsx
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import axios from 'axios';
+import { io } from 'socket.io-client';
 
 import WordPredictor, { LANGUAGES } from '../components/WordPredictor';
 import { TEAL, AMBER, CREAM } from "../constants/colors";
@@ -115,10 +117,10 @@ globalStyle.textContent = `
   .tts-btn:active { transform: translateY(0); }
   .tts-btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-  .tts-btn.btn-mic         { background: #10b981; color: #fff; }
+  .tts-btn.btn-mic         { background: #16a34a; color: #fff; }
   .tts-btn.btn-mic.rec     { background: #ef4444; color: #fff; animation: recordPulse 1.5s infinite; }
   .tts-btn.btn-mic.loading { background: #6b7280; color: #fff; }
-  .tts-btn.btn-speak       { background: ${TEAL}; color: #fff; }
+  .tts-btn.btn-speak       { background: #2563eb; color: #fff; }
   .tts-btn.btn-stop        { background: #dc2626; color: #fff; }
   .tts-btn.btn-auto-on     { background: #16a34a; color: #fff; }
   .tts-btn.btn-auto-off    { background: #9ca3af; color: #fff; }
@@ -188,6 +190,7 @@ const DEFAULT_AUDIO = { speed: 1.0, pitch: 1.0, volume: 1.0 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Editor() {
+  const navigate = useNavigate();
   const [value, setValue]               = useState('');
   const [plainText, setPlainText]       = useState('');
   const [lastWord, setLastWord]         = useState('');
@@ -195,7 +198,7 @@ export default function Editor() {
   // ── cursorBounds est maintenant en coordonnées PAGE (fixed/viewport)
   const [cursorBounds, setCursorBounds] = useState({ top: 0, left: 0, bottom: 0 });
 
-  const [selectedLang, setSelectedLang] = useState(null);
+  const [selectedLang, setSelectedLang] = useState('fr');
   const [ttsLoading, setTtsLoading]     = useState(false);
   const [ttsError, setTtsError]         = useState('');
   const [audio, setAudio]               = useState(DEFAULT_AUDIO);
@@ -212,48 +215,95 @@ export default function Editor() {
 
   const [isRecording, setIsRecording]       = useState(false);
   const [isTranscribing, setIsTranscribing] = useState(false);
+  const [isPredictionPanelVisible, setIsPredictionPanelVisible] = useState(false);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef   = useRef([]);
+  const socketRef        = useRef(null);
 
   // ── STT ──────────────────────────────────────────────────────────────────────
   const handleMicrophone = async () => {
+    // Stop recording: stop MediaRecorder, stop tracks, close socket
     if (isRecording) {
       if (mediaRecorderRef.current) mediaRecorderRef.current.stop();
+      if (socketRef.current) {
+        try { socketRef.current.disconnect(); } catch {}
+        socketRef.current = null;
+      }
       setIsRecording(false);
       return;
     }
+
+    // Start recording and stream chunks to realtime STT via socket.io
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
+
+      // create socket and listeners
+      const socket = io('http://localhost:3001', { transports: ['websocket'] });
+      socketRef.current = socket;
+
+      socket.on('connect', () => {
+        setTtsError('');
+        // Set language on connect
+        socket.emit('set_language', selectedLang);
+      });
+
+      socket.on('model_ready', () => {
+        // optional: could show UI that model is ready
+      });
+
+      socket.on('server_error', (msg) => {
+        setTtsError(String(msg || 'Erreur serveur STT'));
+      });
+
+      socket.on('transcription', ({ text }) => {
+  if (!text?.trim()) return;
+  try {
+    const editor = quillRef.current?.getEditor();
+    if (!editor) return;
+    editor.focus();                                   // ensure selection is valid
+    const sel = editor.getSelection();
+    const idx = sel ? sel.index : editor.getLength() - 1; // -1 to avoid trailing \n
+    const txt = text.trim() + ' ';
+    editor.insertText(idx, txt);
+    editor.setSelection(idx + txt.length);
+    setPlainText(editor.getText().trim());
+  } catch (e) {
+    console.error('Insertion error:', e);
+  }
+});
+
+      // Prefer explicit mimeType to ensure consistent WebM/Opus chunks
+      const mimeType = 'audio/webm;codecs=opus';
+      const mediaRecorder = new MediaRecorder(stream, { mimeType });
       mediaRecorderRef.current = mediaRecorder;
       audioChunksRef.current = [];
-      mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunksRef.current.push(e.data); };
-      mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
-        stream.getTracks().forEach(t => t.stop());
-        setIsTranscribing(true);
+
+      // When a chunk is available, send it immediately to server
+      mediaRecorder.ondataavailable = (e) => {
+        if (!e.data || e.data.size === 0) return;
         try {
-          const formData = new FormData();
-          if (selectedLang) formData.append('language', selectedLang);
-          formData.append('audio', audioBlob, 'recording.webm');
-          const response = await axios.post('http://localhost:3001/stt/transcribe', formData);
-          if (response.data?.text?.trim()) {
-            const editor = quillRef.current?.getEditor();
-            if (editor) {
-              const sel = editor.getSelection();
-              const idx = sel ? sel.index : editor.getLength();
-              const txt = response.data.text.trim() + ' ';
-              editor.insertText(idx, txt);
-              editor.setSelection(idx + txt.length);
-            }
+          // Emit the Blob directly; socket.io supports binary Blobs from browser
+          if (socketRef.current && socketRef.current.connected) {
+            socketRef.current.emit('audio_chunk', e.data);
           }
-        } catch { setTtsError('Erreur STT : Impossible de transcrire'); }
-        finally   { setIsTranscribing(false); }
+        } catch (err) { console.error('chunk send error', err); }
       };
-      mediaRecorder.start();
+
+      mediaRecorder.onstop = async () => {
+        // Stop tracks
+        stream.getTracks().forEach(t => t.stop());
+        // Give backend a moment to finish final transcription (it will run a final pass on disconnect)
+        setIsTranscribing(true);
+        setTimeout(() => { setIsTranscribing(false); }, 1500);
+      };
+
+      // Start with small timeslice (1s) to produce regular chunks
+      mediaRecorder.start(1000);
       setIsRecording(true);
       setTtsError('');
-    } catch { setTtsError("Accès impossible au microphone"); }
+    } catch {
+      setTtsError("Accès impossible au microphone");
+    }
   };
 
   // ── LanguageTool ─────────────────────────────────────────────────────────────
@@ -412,6 +462,14 @@ export default function Editor() {
     return () => editor.root.removeEventListener('mouseup', handleMouseUp);
   }, [speakWord]);
 
+  // Cleanup media recorder and socket on unmount
+  useEffect(() => {
+    return () => {
+      try { if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') mediaRecorderRef.current.stop(); } catch {}
+      try { if (socketRef.current) socketRef.current.disconnect(); } catch {}
+    };
+  }, []);
+
   const speakText = () => {
     const editor = quillRef.current.getEditor();
     const sel    = editor.getSelection();
@@ -424,14 +482,55 @@ export default function Editor() {
     if (audioRef.current) { audioRef.current.pause(); audioRef.current.currentTime = 0; }
   };
 
+  const handleLangChange = (lang) => {
+    setSelectedLang(lang);
+    if (socketRef.current && socketRef.current.connected) {
+      socketRef.current.emit('set_language', lang);
+    }
+  };
+
   // ── Render ───────────────────────────────────────────────────────────────────
   return (
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      padding: '40px 24px',
+      background: '#f0f2f5',
+    }}>
+    {/* ══ CADRE NOIR ══ */}
     <div className="fade-in" style={{
+      width: '100%',
+      maxWidth: '1200px',
+      background: '#fff',
+      border: '3px solid #111',
+      borderRadius: 8,
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
       padding: '2.5rem 2rem',
-      maxWidth: '860px',
-      margin: '0 auto',
       fontFamily: "'Atkinson Hyperlegible', sans-serif",
     }}>
+      
+      {/* ── RETOUR À L'ACCUEIL ────────────────────────── */}
+      <button 
+        onClick={() => navigate('/')}
+        className="fade-in-1"
+        style={{
+          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          width: 44, height: 44, borderRadius: '50%',
+          background: '#1d9e75', border: 'none', cursor: 'pointer',
+          boxShadow: '0 4px 12px rgba(22,163,74,0.35)',
+          transition: 'transform 0.2s, box-shadow 0.2s',
+          marginBottom: 20,
+        }}
+        onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(22,163,74,0.5)'; }}
+        onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(22,163,74,0.35)'; }}
+        title="Retour à l'accueil"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M11 18l-6-6 6-6" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
 
       {/* ── HEADER ─────────────────────────────────────── */}
       <div className="fade-in-1" style={{
@@ -456,14 +555,11 @@ export default function Editor() {
             Tapez un mot → prédiction en temps réel · espace = lecture · sélection = lecture
           </p>
         </div>
-
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-          <button className={`lang-btn${selectedLang === null ? ' active' : ''}`}
-            onClick={() => setSelectedLang(null)}>🌐 Auto</button>
           {LANGUAGES.map(l => (
             <button key={l.code}
               className={`lang-btn${selectedLang === l.code ? ' active' : ''}`}
-              onClick={() => setSelectedLang(l.code)}
+              onClick={() => handleLangChange(l.code)}
             >{l.flag} {l.label}</button>
           ))}
         </div>
@@ -512,15 +608,27 @@ export default function Editor() {
             </div>
           )}
         </div>
-      </div>
 
-      {/* ── WORD PREDICTOR ─────────────────────────────────────────────────────
-          IMPORTANT : positionné ICI, hors du wrapper Quill,
-          dans un portail fixe sur document.body via position:fixed.
-          Il apparaît TOUJOURS au-dessus du grammar popup (z-index 9999 > 8000)
-          et JAMAIS caché par overflow:hidden du wrapper.
-      ─────────────────────────────────────────────────────────────────────── */}
-      <WordPredictor
+        {/* ── Barre d'état ── */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 16,
+          padding: '7px 16px',
+          borderTop: '1px solid #e2e8f0',
+          background: '#f8fafc',
+          fontSize: 12, fontFamily: "'Nunito', sans-serif", fontWeight: 700,
+          color: '#64748b', borderRadius: '0 0 20px 20px',
+        }}>
+          <span style={{ background: TEAL, color: '#fff', padding: '1px 8px', borderRadius: 20, fontSize: 11 }}>
+            {selectedLang.toUpperCase()}
+          </span>
+          <span>Mots : <strong style={{ color: '#1A1A2E' }}>{plainText.split(/\s+/).filter(Boolean).length}</strong></span>
+          <span>Caractères : <strong style={{ color: '#1A1A2E' }}>{plainText.length}</strong></span>
+          <span style={{ color: grammarErrors.length > 0 ? '#dc2626' : '#16a34a' }}>
+            {grammarErrors.length > 0 ? `⚠ ${grammarErrors.length} correction${grammarErrors.length > 1 ? 's' : ''}` : '✓ Aucune erreur'}
+          </span>
+        </div>
+      </div>
+      {isPredictionPanelVisible && <WordPredictor
         fullText={plainText}
         lastWord={lastWord}
         cursorBounds={cursorBounds}
@@ -529,7 +637,7 @@ export default function Editor() {
         onAudition={speakWord}
         ttsLoading={ttsLoading}
         onReplaceText={handleReplaceText}
-      />
+      />}
 
       {/* ── ERROR ──────────────────────────────────────── */}
       {ttsError && (
@@ -560,6 +668,10 @@ export default function Editor() {
         <button onClick={() => setIsPanelOpen(p => !p)}
           className="tts-btn btn-settings" style={{ marginLeft: 'auto' }}>
           🎛️ {isPanelOpen ? 'Fermer' : 'Paramètres'}
+        </button>
+        <button onClick={() => setIsPredictionPanelVisible(p => !p)}
+          className="tts-btn btn-settings">
+          {isPredictionPanelVisible ? 'Masquer les prédictions' : 'Afficher les prédictions'}
         </button>
       </div>
 
@@ -593,6 +705,7 @@ export default function Editor() {
       }}>
         💡 Espace = lit le mot · Sélection souris = lit la phrase · Clic sur prédiction = audition
       </p>
+    </div>{/* fin cadre noir */}
     </div>
   );
 }

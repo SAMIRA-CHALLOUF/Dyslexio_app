@@ -25,21 +25,21 @@ export const FEATURES = [
     desc: 'home.features.items.2.desc',
   },
   {
-    icon: "🎨",
+    icon: "🎙️",
     color: "#EAF3DE",
     accent: "#639922",
     title: 'home.features.items.3.title',
     desc: 'home.features.items.3.desc',
   },
   {
-    icon: "📐",
+    icon: "🔮",
     color: "#E6F1FB",
     accent: "#185FA5",
     title: 'home.features.items.4.title',
     desc: 'home.features.items.4.desc',
   },
   {
-    icon: "🧠",
+    icon: "🎛️",
     color: "#EEEDFE",
     accent: "#534AB7",
     title: 'home.features.items.5.title',
@@ -103,27 +103,27 @@ export const AUDIENCES = [
 export const TESTIMONIALS = [
   {
     name: "Fatima B.",
-    role: 'home.testimonials.0.role',
+    role: 'home.testimonials.items.0.role',
     avatar: "FB",
     color: AMBER,
     bg: AMBER_LIGHT,
-    text: 'home.testimonials.0.text',
+    text: 'home.testimonials.items.0.text',
   },
   {
     name: "Ahmed K.",
-    role: 'home.testimonials.1.role',
+    role: 'home.testimonials.items.1.role',
     avatar: "AK",
     color: TEAL,
     bg: TEAL_LIGHT,
-    text: 'home.testimonials.1.text',
+    text: 'home.testimonials.items.1.text',
   },
   {
     name: "Sonia M.",
-    role: 'home.testimonials.2.role',
+    role: 'home.testimonials.items.2.role',
     avatar: "SM",
     color: CORAL,
     bg: CORAL_LIGHT,
-    text: 'home.testimonials.2.text',
+    text: 'home.testimonials.items.2.text',
   },
 ];
 

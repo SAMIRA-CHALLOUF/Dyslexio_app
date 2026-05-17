@@ -3,6 +3,7 @@ node_modules/
 
 # Piper (modèles ou binaires lourds)
 piper/
+public/
 
 # Build
 dist/

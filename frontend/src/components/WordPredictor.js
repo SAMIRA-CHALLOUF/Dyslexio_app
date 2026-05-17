@@ -1,6 +1,5 @@
 // src/components/WordPredictor.js
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import Papa from 'papaparse';
 import axios from 'axios';
 
@@ -12,7 +11,6 @@ export const LANGUAGES = [
   { code: 'it', label: 'Italiano', flag: '🇮🇹' },
   { code: 'es', label: 'Español',  flag: '🇪🇸' },
   { code: 'de', label: 'Deutsch',  flag: '🇩🇪' },
-  { code: 'ar', label: 'العربية',  flag: '🇹🇳' },
 ];
 
 // Cache CSV (inchangé)
@@ -92,7 +90,6 @@ const WordPredictor = React.memo(function WordPredictor({
   ttsLoading, 
   onReplaceText 
 }) {
-  const { t } = useTranslation();
   const [words, setWords]           = useState([]);
   const [visible, setVisible]       = useState(false);
   const [loading, setLoading]       = useState(false);
@@ -101,6 +98,12 @@ const WordPredictor = React.memo(function WordPredictor({
   const [symbols, setSymbols]       = useState([]);
   const [activeTab, setActiveTab]   = useState(null);
 
+  // ── Drag & Drop ──
+  const [dragPos, setDragPos]       = useState(null); // {x, y} position manuelle
+  const isDragging  = useRef(false);
+  const dragOffset  = useRef({ x: 0, y: 0 });
+  const panelRef    = useRef(null);
+
   // Correction state
   const [correctedText, setCorrectedText] = useState('');
   const [isCorrecting, setIsCorrecting]   = useState(false);
@@ -108,6 +111,28 @@ const WordPredictor = React.memo(function WordPredictor({
 
   const abortRef    = useRef(null);
   const debounceRef = useRef(null);
+
+  // ── Drag handlers ──
+  const onMouseDown = useCallback((e) => {
+    isDragging.current = true;
+    const rect = panelRef.current.getBoundingClientRect();
+    dragOffset.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    e.preventDefault();
+  }, []);
+
+  useEffect(() => {
+    const onMouseMove = (e) => {
+      if (!isDragging.current) return;
+      setDragPos({ x: e.clientX - dragOffset.current.x, y: e.clientY - dragOffset.current.y });
+    };
+    const onMouseUp = () => { isDragging.current = false; };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, []);
 
   useEffect(() => { loadCSV(data => setSymbols(data)); }, []);
   useEffect(() => { setHoveredIdx(null); }, [words]);
@@ -138,8 +163,8 @@ const WordPredictor = React.memo(function WordPredictor({
       if (err.name === 'AbortError' || err.code === 'ERR_CANCELED') return;
       console.error('[WordPredictor] Erreur:', err);
       setError(err.response?.status === 404
-        ? t('predictor.backendNotFound')
-        : t('predictor.backendError'));
+        ? 'Backend non trouvé (vérifie que NestJS tourne sur port 3001)'
+        : 'Erreur de connexion au backend');
       setWords([]);
     } finally {
       setLoading(false);
@@ -186,7 +211,7 @@ const WordPredictor = React.memo(function WordPredictor({
       setShowCorrection(true);
     } catch (err) {
       console.error(err);
-      setError(t('predictor.correctionError'));
+      setError('Erreur lors de la correction. Vérifie que Ollama + Mistral sont lancés.');
     } finally {
       setIsCorrecting(false);
     }
@@ -210,22 +235,21 @@ const WordPredictor = React.memo(function WordPredictor({
 
   if (!visible) return null;
 
-  const top  = (cursorBounds?.bottom || 0) + 50;
-  const left = Math.min((cursorBounds?.left || 0) + 16, window.innerWidth - 460);
+  const top  = dragPos ? dragPos.y : (cursorBounds?.bottom || 0) + 50;
+  const left = dragPos ? dragPos.x : Math.min((cursorBounds?.left || 0) + 16, window.innerWidth - 460);
   const currentLang = lang ? LANGUAGES.find(l => l.code === lang) : null;
 
   const displayWord   = hoveredIdx !== null ? words[hoveredIdx] : lastWord;
   const displaySymbol = findSymbol(symbols, displayWord);
 
   return (
-    <div style={{ ...styles.panel, top, left }}>
+    <div ref={panelRef} style={{ ...styles.panel, top, left }}>
 
       {/* Title Bar */}
-      <div style={styles.titleBar}>
-        <span style={styles.titleText}>{t('predictor.title')}</span>
-        <span style={styles.modelBadge}>🤖 {t('predictor.backend')}</span>
+      <div style={{ ...styles.titleBar, cursor: 'grab' }} onMouseDown={onMouseDown}>
+        <span style={styles.titleText}>Predictions</span>
         <span style={styles.langBadge}>
-          {currentLang ? `${currentLang.flag} ${currentLang.label}` : t('predictor.auto')}
+          {currentLang ? `${currentLang.flag} ${currentLang.label}` : '🌐 Auto'}
         </span>
         <button style={styles.closeBtn} onClick={() => setVisible(false)}>✕</button>
       </div>
@@ -233,10 +257,8 @@ const WordPredictor = React.memo(function WordPredictor({
       {/* Toolbar */}
       <div style={styles.toolbar}>
         {[
-          { icon: '🖼️', label: 'predictor.tool.picture' },
-          { icon: '📝', label: 'predictor.tool.correction', action: handleCorrection },
-          { icon: '📢', label: 'predictor.tool.reading' },
-          { icon: '⚙️', label: 'predictor.tool.settings' },
+          { icon: '📝', label: 'Correction', action: handleCorrection },
+          { icon: '📢', label: 'Reading' },
         ].map((item, i) => {
           const isAudition = item.label === 'Reading';
           const isActive   = activeTab === item.label;
@@ -265,7 +287,7 @@ const WordPredictor = React.memo(function WordPredictor({
               <span style={styles.toolIcon}>
                 {isPlaying ? '⏳' : (item.label === 'Correction' && isCorrecting ? '⏳' : item.icon)}
               </span>
-              <span style={styles.toolLabel}>{t(item.label)}</span>
+              <span style={styles.toolLabel}>{item.label}</span>
             </div>
           );
         })}
@@ -339,7 +361,7 @@ const WordPredictor = React.memo(function WordPredictor({
           <div style={styles.correctionZone}>
             <div style={styles.correctionHeader}>
               <span style={styles.correctionIcon}>⏳</span>
-              <span style={styles.correctionTitle}>{t('predictor.correctionInProgress')}</span>
+              <span style={styles.correctionTitle}>Correction en cours...</span>
             </div>
           </div>
         </>

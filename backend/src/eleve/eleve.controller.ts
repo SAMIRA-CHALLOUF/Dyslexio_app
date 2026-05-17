@@ -1,34 +1,45 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller, Post, Get, Delete,
+  Body, Request, Param, ParseIntPipe,
+  UseGuards, ForbiddenException,
+} from '@nestjs/common';
 import { EleveService } from './eleve.service';
 import { CreateEleveDto } from './dto/create-eleve.dto';
-import { UpdateEleveDto } from './dto/update-eleve.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AccountType } from '../etablissement/enums/account-type.enum';
 
-@Controller('eleve')
+@Controller('eleves')
+@UseGuards(JwtAuthGuard)          // all routes require a valid JWT
 export class EleveController {
   constructor(private readonly eleveService: EleveService) {}
 
+  // POST /eleves — établissement adds a new élève
   @Post()
-  create(@Body() createEleveDto: CreateEleveDto) {
-    return this.eleveService.create(createEleveDto);
+  create(@Body() dto: CreateEleveDto, @Request() req) {
+    if (req.user.typeCompte !== AccountType.ETABLISSEMENT) {
+      throw new ForbiddenException('Seuls les établissements peuvent ajouter des élèves.');
+    }
+    const etablissementId: number = req.user.sub;
+    return this.eleveService.create(dto, etablissementId);
   }
 
+  // GET /eleves — returns all élèves for the logged-in établissement
   @Get()
-  findAll() {
-    return this.eleveService.findAll();
+  findAll(@Request() req) {
+    if (req.user.typeCompte !== AccountType.ETABLISSEMENT) {
+      throw new ForbiddenException('Seuls les établissements peuvent voir les élèves.');
+    }
+    const etablissementId: number = req.user.sub;
+    return this.eleveService.findAllByEtablissement(etablissementId);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.eleveService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEleveDto: UpdateEleveDto) {
-    return this.eleveService.update(+id, updateEleveDto);
-  }
-
+  // DELETE /eleves/:id — remove an élève belonging to this établissement
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.eleveService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number, @Request() req) {
+    if (req.user.typeCompte !== AccountType.ETABLISSEMENT) {
+      throw new ForbiddenException('Seuls les établissements peuvent supprimer des élèves.');
+    }
+    const etablissementId: number = req.user.sub;
+    return this.eleveService.remove(id, etablissementId);
   }
 }

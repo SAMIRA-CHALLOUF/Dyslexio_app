@@ -30,7 +30,6 @@ const labelStyle = {
 };
 
 export default function ProfilePage({ user, onUserUpdate, onLogout }) {
-  // ✅ useTranslation INSIDE the component
   const { t } = useTranslation();
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
@@ -74,7 +73,7 @@ export default function ProfilePage({ user, onUserUpdate, onLogout }) {
       if (formData.motDePasse) payload.motDePasse = formData.motDePasse;
       if (imagePreview && imagePreview !== user?.image) payload.image = imagePreview;
 
-      const res = await fetch(`${BACKEND}/eleve/${user.id}`, {
+      const res = await fetch(`${BACKEND}/client/${user.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -94,7 +93,7 @@ export default function ProfilePage({ user, onUserUpdate, onLogout }) {
     if (!window.confirm(t('profile.deleteConfirm'))) return;
     if (!user?.id) return;
     try {
-      await fetch(`${BACKEND}/eleve/${user.id}`, { method: 'DELETE' });
+      await fetch(`${BACKEND}/client/${user.id}`, { method: 'DELETE' });
       if (onLogout) onLogout();
       navigate('/');
     } catch {
@@ -161,10 +160,6 @@ export default function ProfilePage({ user, onUserUpdate, onLogout }) {
             >
               {t('profile.uploadImage')}
             </button>
-
-            
-
-            
           </div>
 
           {/* RIGHT — Account Details */}

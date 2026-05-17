@@ -16,7 +16,12 @@
     "title": "Predicciones",
     "backend": "Backend NestJS",
     "auto": "🌐 Auto",
-    "tool": { "picture": "Imagen", "correction": "Corrección", "reading": "Lectura", "settings": "Configuración" },
+    "tool": {
+      "picture": "Imagen",
+      "correction": "Corrección",
+      "reading": "Lectura",
+      "settings": "Configuración"
+    },
     "backendNotFound": "Backend no encontrado (asegúrate de que NestJS se esté ejecutando en el puerto 3001)",
     "backendError": "Error de conexión con el backend",
     "correctionError": "Error durante la corrección. Asegúrate de que Ollama + Mistral estén en ejecución.",
@@ -55,7 +60,20 @@
     "chooseDuration": "Simplemente elige la duración",
     "includedFeatures": "Incluido en todos los planes",
     "summary": "Resumen",
-    "billing": "Facturación",
+    "billing": {
+      "biannual": {
+        "label": "6 Meses",
+        "suffix": "/ 6 meses"
+      },
+      "annual": {
+        "label": "1 Año",
+        "suffix": "/ año"
+      },
+      "biennial": {
+        "label": "2 Años",
+        "suffix": "/ 2 años"
+      }
+    },
     "cardNumber": "Número de tarjeta",
     "cardName": "Nombre en la tarjeta",
     "expiry": "Fecha de vencimiento (MM/AA)",
@@ -94,9 +112,52 @@
     "popularSave": "Popular · ahorra {{amount}} €",
     "bestPriceSave": "Mejor precio · ahorra {{amount}} €",
     "popularBadge": "POPULAR",
-    "durations": { "biannual": "6 meses", "annual": "1 año", "biennial": "2 años" },
-    "billing": { "biannual": { "label": "6 Meses", "suffix": "/ 6 meses" }, "annual": { "label": "1 Año", "suffix": "/ año" }, "biennial": { "label": "2 Años", "suffix": "/ 2 años" } },
-    "plans": { "free": { "description": "Discover what AI can do", "features": ["Base model","Message limits","Limited image generation","Limited memory"] }, "go": { "description": "Keep chatting with extended access", "features": ["Base model","Extended message limits","Extended image limits","Extended memory","Extended voice access"] }, "plus": { "description": "Enjoy the full experience", "features": ["Advanced models","Higher limits","Fast image generation","Extended chat memory","Codex coding agent"] }, "pro": { "description": "Maximize your productivity", "features": ["All Plus features","5x or 20x higher usage limit","Flagship Pro model","Max Codex access","Deep search"] } }
+    "durations": {
+      "biannual": "6 meses",
+      "annual": "1 año",
+      "biennial": "2 años"
+    },
+    "plans": {
+      "free": {
+        "description": "Discover what AI can do",
+        "features": [
+          "Base model",
+          "Message limits",
+          "Limited image generation",
+          "Limited memory"
+        ]
+      },
+      "go": {
+        "description": "Keep chatting with extended access",
+        "features": [
+          "Base model",
+          "Extended message limits",
+          "Extended image limits",
+          "Extended memory",
+          "Extended voice access"
+        ]
+      },
+      "plus": {
+        "description": "Enjoy the full experience",
+        "features": [
+          "Advanced models",
+          "Higher limits",
+          "Fast image generation",
+          "Extended chat memory",
+          "Codex coding agent"
+        ]
+      },
+      "pro": {
+        "description": "Maximize your productivity",
+        "features": [
+          "All Plus features",
+          "5x or 20x higher usage limit",
+          "Flagship Pro model",
+          "Max Codex access",
+          "Deep search"
+        ]
+      }
+    }
   },
   "home": {
     "features": {
@@ -104,33 +165,95 @@
       "title": "Herramientas diseñadas para ti",
       "subtitle": "Cada función ha sido diseñada con personas con dislexia para abordar desafíos diarios reales.",
       "items": [
-        { "title": "Lectura de audio", "desc": "El texto se lee en voz alta con una voz natural. Sigue cada palabra resaltada visualmente." },
-        { "title": "Asistencia para escribir", "desc": "Correcciones inteligentes y sugerencias adaptadas a errores comunes de dislexia." },
-        { "title": "Fuente Disléxica", "desc": "Activa la fuente OpenDyslexic para anclar visualmente cada letra y reducir la confusión." },
-        { "title": "Superposición de color", "desc": "Superpone un tinte de color sobre el texto para reducir la fatiga visual." },
-        { "title": "Espaciado de texto", "desc": "Ajusta el espaciado para una comodidad óptima." },
-        { "title": "Resumen IA", "desc": "Obtén un resumen simplificado de cualquier texto largo en segundos." }
+        {
+          "title": "Lectura de audio",
+          "desc": "El texto se lee en voz alta con una voz natural. Sigue cada palabra resaltada visualmente."
+        },
+        {
+          "title": "Asistencia para escribir",
+          "desc": "Correcciones inteligentes y sugerencias adaptadas a errores comunes de dislexia."
+        },
+        {
+          "title": "Fuente Disléxica",
+          "desc": "Activa la fuente OpenDyslexic para anclar visualmente cada letra y reducir la confusión."
+        },
+        {
+          "title": "Superposición de color",
+          "desc": "Superpone un tinte de color sobre el texto para reducir la fatiga visual."
+        },
+        {
+          "title": "Espaciado de texto",
+          "desc": "Ajusta el espaciado para una comodidad óptima."
+        },
+        {
+          "title": "Resumen IA",
+          "desc": "Obtén un resumen simplificado de cualquier texto largo en segundos."
+        }
       ]
     },
     "steps": [
-      { "title": "Pega o escribe tu texto", "desc": "Importa un documento, pega texto o empieza a escribir directamente en el editor." },
-      { "title": "Elige tus herramientas", "desc": "Activa la lectura de audio, ajusta la fuente o los colores según tu comodidad personal." },
-      { "title": "Lee y escribe mejor", "desc": "Disfruta de una experiencia adaptada a tu ritmo, accesible en cualquier momento y lugar." }
+      {
+        "title": "Pega o escribe tu texto",
+        "desc": "Importa un documento, pega texto o empieza a escribir directamente en el editor."
+      },
+      {
+        "title": "Elige tus herramientas",
+        "desc": "Activa la lectura de audio, ajusta la fuente o los colores según tu comodidad personal."
+      },
+      {
+        "title": "Lee y escribe mejor",
+        "desc": "Disfruta de una experiencia adaptada a tu ritmo, accesible en cualquier momento y lugar."
+      }
     ],
     "audiences": [
-      { "label": "Niños", "age": "6 – 16 años", "points": ["Interfaz lúdica y colorida","Modo clase para profesores","Ejercicios de lectura guiada","Progreso seguido con los padres"] },
-      { "label": "Adultos", "age": "17+", "points": ["Integración con email y Word","Modo profesional discreto","Resumen de documentos largos","Uso móvil"] }
+      {
+        "label": "Niños",
+        "age": "6 – 16 años",
+        "points": [
+          "Interfaz lúdica y colorida",
+          "Modo clase para profesores",
+          "Ejercicios de lectura guiada",
+          "Progreso seguido con los padres"
+        ]
+      },
+      {
+        "label": "Adultos",
+        "age": "17+",
+        "points": [
+          "Integración con email y Word",
+          "Modo profesional discreto",
+          "Resumen de documentos largos",
+          "Uso móvil"
+        ]
+      }
     ],
     "testimonials": [
-      { "role": "Madre de un niño disléxico", "text": "Mi hijo de 9 años recuperó el gusto por leer gracias a la fuente disléxica y la lectura en audio. Sus notas mejoraron en solo 3 meses." },
-      { "role": "Ingeniero, diagnosticado a los 28", "text": "Por fin una herramienta que me acompaña en el trabajo sin llamar la atención. Escribo mis informes con más tranquilidad." },
-      { "role": "Maestra de primaria", "text": "Uso la app con toda mi clase. La superposición de color transformó las sesiones de lectura para mis alumnos con necesidades específicas." }
+      {
+        "role": "Madre de un niño disléxico",
+        "text": "Mi hijo de 9 años recuperó el gusto por leer gracias a la fuente disléxica y la lectura en audio. Sus notas mejoraron en solo 3 meses."
+      },
+      {
+        "role": "Ingeniero, diagnosticado a los 28",
+        "text": "Por fin una herramienta que me acompaña en el trabajo sin llamar la atención. Escribo mis informes con más tranquilidad."
+      },
+      {
+        "role": "Maestra de primaria",
+        "text": "Uso la app con toda mi clase. La superposición de color transformó las sesiones de lectura para mis alumnos con necesidades específicas."
+      }
     ],
     "stats": [
       "% de la población es disléxica",
       "los usuarios mejoran en 1 mes",
       "familias acompañadas"
-    ]
+    ],
+    "demoVideo": {
+      "title": "Descubre el editor en acción",
+      "description": "Mira este breve vídeo para entender cómo nuestras herramientas pueden ayudarte a leer y escribir más fácilmente.",
+      "videoFallback": "Tu navegador no soporta la etiqueta de vídeo."
+    }
+    ,
+    "audiencesTitle": "Para cada edad, cada necesidad",
+    "audiencesMore": "Saber más →"
   },
   "profile": {
     "title": "Perfil",
@@ -162,12 +285,77 @@
     "cta": "Empezar gratis",
     "demo": "Ver la demo",
     "statsLine": "<b>50.000+</b> familias acompañadas ⭐ 4.9/5",
-    "toolbar": { "listen": "🔊 Escuchar", "font": "🔤 Fuente", "color": "🎨 Color" },
-    "dyslexia": { "parts": ["La ", "dislexia ", "es una ", "dificultad ", "de aprendizaje "], "post": "que afecta la lectura y la escritura. Con las herramientas adecuadas, cada persona puede progresar a su propio ritmo." },
+    "toolbar": {
+      "listen": "🔊 Escuchar",
+      "font": "🔤 Fuente",
+      "color": "🎨 Color"
+    },
+    "dyslexia": {
+      "parts": [
+        "La ",
+        "dislexia ",
+        "es una ",
+        "dificultad ",
+        "de aprendizaje "
+      ],
+      "post": "que afecta la lectura y la escritura. Con las herramientas adecuadas, cada persona puede progresar a su propio ritmo."
+    },
     "readProgressLabel": "Progreso de lectura",
-    "readMode": "📖 Modo de lectura"
+    "readMode": "📖 Modo de lectura",
+    "slide2": {
+      "badge": "Reconocimiento de voz",
+      "title1": "Transforma tu",
+      "title2": "voz",
+      "title3": "en texto perfecto.",
+      "subtitle": "¡Libera tu creatividad! Dicta tus ideas de forma natural y deja que nuestro asistente inteligente transcriba y corrija tus textos al instante.",
+      "aiSuccess": "¡Corrección de IA aplicada con éxito!"
+    },
+    "slide3": {
+      "badge": "Panel de control",
+      "title1": "Visualiza tu",
+      "title2": "progreso",
+      "title3": "cada día.",
+      "subtitle": "Estadísticas claras, visuales y alentadoras para los alumnos, con seguimiento detallado adaptado a padres y profesionales de la salud.",
+      "booksRead": "Libros leídos",
+      "avgScore": "Puntuación media"
+    }
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  }
+  ,
+  "editor": {
+    "backToHome": "← Volver al inicio",
+    "title": "Ayuda a la comunicación",
+    "hintShort": "Escribe una palabra → predicción en tiempo real · espacio = leer · selección = leer",
+    "quillPlaceholder": "Comienza a escribir o usa la dictado de voz…",
+    "errors": {
+      "selectTextWarning": "⚠️ Selecciona texto primero",
+      "sttTranscribe": "Error STT: No se pudo transcribir",
+      "microphone": "No se puede acceder al micrófono",
+      "readFailed": "❌ Reproducción fallida"
+    },
+    "tts": {
+      "transcription": "Transcripción…",
+      "recordingStop": "🛑 Detener",
+      "dictation": "🎙️ Dictado",
+      "reading": "Reproduciendo…",
+      "readSelection": "🔊 Leer la selección",
+      "stop": "⏹ Stop",
+      "autoOn": "🔊 Auto : ON",
+      "autoOff": "🔇 Auto : OFF"
+    },
+    "settings": {
+      "open": "Cerrar",
+      "title": "Ajustes"
+    },
+    "voiceSettings": {
+      "title": "🎛️ Ajustes de voz",
+      "speed": "🏃 Velocidad",
+      "pitch": "🎵 Tono",
+      "volume": "🔈 Volumen",
+      "reset": "↺ Reiniciar"
+    },
+    "hint": "💡 Espacio = lee la palabra · Selección con el ratón = lee la frase · Clic en predicción = escuchar"
   }
 }

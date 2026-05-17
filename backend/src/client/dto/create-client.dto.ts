@@ -2,7 +2,7 @@ import {
   IsString, IsEmail, IsEnum, IsNotEmpty,
   IsOptional, MinLength,
 } from 'class-validator';
-import { AccountType } from '../enums/account-type.enum';
+import { AccountType } from '../../etablissement/enums/account-type.enum';
 import { BillingPeriod } from '../client.entity';
 
 export class CreateClientDto {
@@ -34,6 +34,7 @@ export class CreateClientDto {
   @IsEnum(AccountType)
   typeCompte!: AccountType;
 
+  @IsOptional()
   @IsEnum(BillingPeriod, { message: 'Durée invalide' })
-  billingPeriod!: BillingPeriod;
+  billingPeriod?: BillingPeriod;
 }

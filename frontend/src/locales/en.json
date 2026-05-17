@@ -43,7 +43,20 @@
     "chooseDuration": "Simply choose your duration",
     "includedFeatures": "Included in all plans",
     "summary": "Summary",
-    "billing": "Billing",
+    "billing": {
+      "biannual": {
+        "label": "6 Months",
+        "suffix": "/ 6 months"
+      },
+      "annual": {
+        "label": "1 Year",
+        "suffix": "/ year"
+      },
+      "biennial": {
+        "label": "2 Years",
+        "suffix": "/ 2 years"
+      }
+    },
     "cardNumber": "Card number",
     "cardName": "Name on card",
     "expiry": "Expiry date (MM/YY)",
@@ -66,8 +79,7 @@
       "Discreet professional mode",
       "Adjustable text spacing",
       "Access on all devices"
-    ]
-    ,
+    ],
     "verifyEmailTitle": "Verify your email",
     "verifyEmailSentTo": "A confirmation link has been sent to",
     "verifyEmailClick": "Click it to activate your account.",
@@ -88,27 +100,45 @@
       "annual": "1 year",
       "biennial": "2 years"
     },
-    "billing": {
-      "biannual": { "label": "6 Months", "suffix": "/ 6 months" },
-      "annual": { "label": "1 Year", "suffix": "/ year" },
-      "biennial": { "label": "2 Years", "suffix": "/ 2 years" }
-    },
     "plans": {
       "free": {
         "description": "Discover what AI can do",
-        "features": ["Base model","Message limits","Limited image generation","Limited memory"]
+        "features": [
+          "Base model",
+          "Message limits",
+          "Limited image generation",
+          "Limited memory"
+        ]
       },
       "go": {
         "description": "Keep chatting with extended access",
-        "features": ["Base model","Extended message limits","Extended image limits","Extended memory","Extended voice access"]
+        "features": [
+          "Base model",
+          "Extended message limits",
+          "Extended image limits",
+          "Extended memory",
+          "Extended voice access"
+        ]
       },
       "plus": {
         "description": "Enjoy the full experience",
-        "features": ["Advanced models","Higher limits","Fast image generation","Extended chat memory","Codex coding agent"]
+        "features": [
+          "Advanced models",
+          "Higher limits",
+          "Fast image generation",
+          "Extended chat memory",
+          "Codex coding agent"
+        ]
       },
       "pro": {
         "description": "Maximize your productivity",
-        "features": ["All Plus features","5x or 20x higher usage limit","Flagship Pro model","Max Codex access","Deep search"]
+        "features": [
+          "All Plus features",
+          "5x or 20x higher usage limit",
+          "Flagship Pro model",
+          "Max Codex access",
+          "Deep search"
+        ]
       }
     }
   },
@@ -118,35 +148,106 @@
       "title": "Tools designed for you",
       "subtitle": "Each feature has been designed with people with dyslexia to address real daily challenges.",
       "items": [
-        { "title": "Audio Reading", "desc": "Text is read aloud with a natural voice. Follow each highlighted word visually." },
-        { "title": "Writing Assistance", "desc": "Smart corrections and suggestions tailored to common dyslexia errors." },
-        { "title": "Dyslexic Font", "desc": "Enable the OpenDyslexic font to anchor each letter visually and reduce confusion." },
-        { "title": "Color Overlay", "desc": "Overlay a colored tint on text to reduce visual fatigue and line dropping." },
-        { "title": "Text Spacing", "desc": "Adjust spacing between letters, words and lines for optimal comfort." },
-        { "title": "AI Summary", "desc": "Get a simplified summary of any long text in seconds using AI." }
+        {
+          "title": "Audio Reading",
+          "desc": "Text is read aloud with a natural voice. Follow each highlighted word visually."
+        },
+        {
+          "title": "Writing Assistance",
+          "desc": "Smart corrections and suggestions tailored to common dyslexia errors."
+        },
+        {
+          "title": "Dyslexic Font",
+          "desc": "Enable the OpenDyslexic font to anchor each letter visually and reduce confusion."
+        },
+        {
+          "title": "Color Overlay",
+          "desc": "Overlay a colored tint on text to reduce visual fatigue and line dropping."
+        },
+        {
+          "title": "Text Spacing",
+          "desc": "Adjust spacing between letters, words and lines for optimal comfort."
+        },
+        {
+          "title": "AI Summary",
+          "desc": "Get a simplified summary of any long text in seconds using AI."
+        }
       ]
     },
     "steps": [
-      { "title": "Paste or write your text", "desc": "Import a document, paste text or start writing directly in the editor." },
-      { "title": "Choose your tools", "desc": "Enable audio reading, adjust the font or colors to your personal comfort." },
-      { "title": "Read and write better", "desc": "Enjoy an experience adapted to your pace, accessible anywhere, anytime." }
+      {
+        "title": "Paste or write your text",
+        "desc": "Import a document, paste text or start writing directly in the editor."
+      },
+      {
+        "title": "Choose your tools",
+        "desc": "Enable audio reading, adjust the font or colors to your personal comfort."
+      },
+      {
+        "title": "Read and write better",
+        "desc": "Enjoy an experience adapted to your pace, accessible anywhere, anytime."
+      }
     ],
     "audiences": [
-      { "label": "Children", "age": "6 – 16 yrs", "points": ["Playful, colorful UI","Class mode for teachers","Guided reading exercises","Progress tracked with parents"] },
-      { "label": "Adults", "age": "17+", "points": ["Email & Word integration","Discreet professional mode","Long document summaries","Mobile use"] }
+      {
+        "label": "Children",
+        "age": "6 – 16 yrs",
+        "points": [
+          "Playful, colorful UI",
+          "Class mode for teachers",
+          "Guided reading exercises",
+          "Progress tracked with parents"
+        ]
+      },
+      {
+        "label": "Adults",
+        "age": "17+",
+        "points": [
+          "Email & Word integration",
+          "Discreet professional mode",
+          "Long document summaries",
+          "Mobile use"
+        ]
+      }
     ],
     "testimonials": [
-      { "role": "Mother of a dyslexic child", "text": "My 9-year-old regained the taste for reading thanks to the dyslexic font and audio reading. His grades improved in just 3 months." },
-      { "role": "Engineer, diagnosed at 28", "text": "Finally a tool that supports me at work without drawing attention. I write my reports much more calmly." },
-      { "role": "Primary school teacher", "text": "I use the app with my whole class. The color overlay transformed reading sessions for my special-needs students." }
+      {
+        "role": "Mother of a dyslexic child",
+        "text": "My 9-year-old regained the taste for reading thanks to the dyslexic font and audio reading. His grades improved in just 3 months."
+      },
+      {
+        "role": "Engineer, diagnosed at 28",
+        "text": "Finally a tool that supports me at work without drawing attention. I write my reports much more calmly."
+      },
+      {
+        "role": "Primary school teacher",
+        "text": "I use the app with my whole class. The color overlay transformed reading sessions for my special-needs students."
+      }
     ],
-    "stats": ["% of the population is dyslexic","users improve in 1 month","families supported"]
+    "stats": [
+      "% of the population is dyslexic",
+      "users improve in 1 month",
+      "families supported"
+    ],
+    "demoVideo": {
+      "title": "See the editor in action",
+      "description": "Watch this short video to see how our tools can help you read and write more easily.",
+      "videoFallback": "Your browser does not support the video tag."
+    }
+    ,
+    "audiencesTitle": "For every age, every need",
+    "audiencesMore": "Learn more →"
   },
   "predictor": {
     "title": "Predictions",
     "backend": "Backend NestJS",
     "auto": "🌐 Auto",
-    "tool": { "picture": "Image", "correction": "Correction", "reading": "Reading", "settings": "Settings" },
+    "tool": {
+      "picture": "Image",
+      "correction": "Correction",
+      "reading": "Reading",
+      "settings": "Settings"
+    },
     "backendNotFound": "Backend not found (make sure NestJS runs on port 3001)",
     "backendError": "Connection error to backend",
     "correctionError": "Correction error. Make sure Ollama + Mistral are running.",
@@ -184,12 +285,77 @@
     "cta": "Get started for free",
     "demo": "Watch the demo",
     "statsLine": "<b>50,000+</b> families supported ⭐ 4.9/5",
-    "toolbar": { "listen": "🔊 Listen", "font": "🔤 Font", "color": "🎨 Color" },
-    "dyslexia": { "parts": ["La ", "dyslexia ", "is a ", "difficulty ", "of learning "], "post": "that affects reading and writing. With the right tools, everyone can progress at their own pace." },
+    "toolbar": {
+      "listen": "🔊 Listen",
+      "font": "🔤 Font",
+      "color": "🎨 Color"
+    },
+    "dyslexia": {
+      "parts": [
+        "La ",
+        "dyslexia ",
+        "is a ",
+        "difficulty ",
+        "of learning "
+      ],
+      "post": "that affects reading and writing. With the right tools, everyone can progress at their own pace."
+    },
     "readProgressLabel": "Reading progress",
-    "readMode": "📖 Reading mode"
+    "readMode": "📖 Reading mode",
+    "slide2": {
+      "badge": "Voice Recognition",
+      "title1": "Transform your",
+      "title2": "voice",
+      "title3": "into perfect text.",
+      "subtitle": "Unleash your creativity! Dictate your ideas naturally and let our intelligent assistant transcribe and correct your texts instantly.",
+      "aiSuccess": "AI correction applied successfully!"
+    },
+    "slide3": {
+      "badge": "Dashboard",
+      "title1": "Visualize your",
+      "title2": "progress",
+      "title3": "every day.",
+      "subtitle": "Clear, visual and encouraging statistics for students, with detailed tracking adapted for parents and health professionals.",
+      "booksRead": "Books read",
+      "avgScore": "Avg. score"
+    }
   },
   "footer": {
     "rights": "All rights reserved."
+  }
+  ,
+  "editor": {
+    "backToHome": "← Back to home",
+    "title": "Communication Aid",
+    "hintShort": "Type a word → realtime prediction · space = speak · selection = speak",
+    "quillPlaceholder": "Start writing or use voice dictation…",
+    "errors": {
+      "selectTextWarning": "⚠️ Select some text first",
+      "sttTranscribe": "STT error: Unable to transcribe",
+      "microphone": "Unable to access the microphone",
+      "readFailed": "❌ Playback failed"
+    },
+    "tts": {
+      "transcription": "Transcription…",
+      "recordingStop": "🛑 Stop",
+      "dictation": "🎙️ Dictation",
+      "reading": "Reading…",
+      "readSelection": "🔊 Read selection",
+      "stop": "⏹ Stop",
+      "autoOn": "🔊 Auto : ON",
+      "autoOff": "🔇 Auto : OFF"
+    },
+    "settings": {
+      "open": "Close",
+      "title": "Settings"
+    },
+    "voiceSettings": {
+      "title": "🎛️ Voice settings",
+      "speed": "🏃 Speed",
+      "pitch": "🎵 Pitch",
+      "volume": "🔈 Volume",
+      "reset": "↺ Reset"
+    },
+    "hint": "💡 Space = speak word · Mouse selection = speak sentence · Click prediction = audition"
   }
 }

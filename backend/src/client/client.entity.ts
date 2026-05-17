@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
-import { AccountType } from '../eleve/enums/account-type.enum'; // ou un dossier shared
+import { AccountType } from '../etablissement/enums/account-type.enum'; // ou un dossier shared
 
 export enum ClientStatus {
   PENDING = 'pending',

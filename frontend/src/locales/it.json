@@ -13,18 +13,41 @@
     "myDocuments": "I miei documenti"
   },
   "hero": {
-    "statsLine": "<b>50.000+</b> famiglie accompagnate ⭐ 4.9/5",
-    "toolbar": { "listen": "🔊 Ascolta", "font": "🔤 Carattere", "color": "🎨 Colore" },
-    "dyslexia": { "parts": ["La ", "dislessia ", "è una ", "difficoltà ", "di apprendimento "], "post": "che interessa la lettura e la scrittura. Con gli strumenti giusti, ognuno può progredire al proprio ritmo." },
-    "readProgressLabel": "Progresso di lettura"
-  ,
-    "readMode": "📖 Modalità di lettura"
+    "badge": "Intelligenza artificiale per tutti",
+    "title1": "Leggere e scrivere",
+    "title2": "senza barriere",
+    "title3": "per tutti.",
+    "subtitle": "Un'app intelligente pensata per le persone con dislessia, bambini e adulti — per leggere più facilmente, scrivere con fiducia e progredire al proprio ritmo.",
+    "cta": "Inizia gratuitamente",
+    "demo": "Guarda la demo",
+    "slide2": {
+      "badge": "Riconoscimento vocale",
+      "title1": "Trasforma la tua",
+      "title2": "voce",
+      "title3": "in testo perfetto.",
+      "subtitle": "Libera la tua creatività! Ditta le tue idee in modo naturale e lascia che il nostro assistente intelligente trascriva e corregga i tuoi testi all'istante.",
+      "aiSuccess": "Correzione IA applicata con successo!"
+    },
+    "slide3": {
+      "badge": "Dashboard",
+      "title1": "Visualizza i tuoi",
+      "title2": "progressi",
+      "title3": "ogni giorno.",
+      "subtitle": "Statistiche chiare, visive e incoraggianti per gli studenti, con monitoraggio dettagliato adattato a genitori e professionisti della salute.",
+      "booksRead": "Libri letti",
+      "avgScore": "Punteggio medio"
+    }
   },
   "predictor": {
     "title": "Predizioni",
     "backend": "Backend NestJS",
     "auto": "🌐 Auto",
-    "tool": { "picture": "Immagine", "correction": "Correzione", "reading": "Lettura", "settings": "Impostazioni" },
+    "tool": {
+      "picture": "Immagine",
+      "correction": "Correzione",
+      "reading": "Lettura",
+      "settings": "Impostazioni"
+    },
     "backendNotFound": "Backend non trovato (verifica che NestJS sia in esecuzione sulla porta 3001)",
     "backendError": "Errore di connessione al backend",
     "correctionError": "Errore durante la correzione. Verifica che Ollama + Mistral siano in esecuzione.",
@@ -63,7 +86,20 @@
     "chooseDuration": "Scegli semplicemente la durata",
     "includedFeatures": "Incluso in tutti i piani",
     "summary": "Riepilogo",
-    "billing": "Fatturazione",
+    "billing": {
+      "biannual": {
+        "label": "6 Mesi",
+        "suffix": "/ 6 mesi"
+      },
+      "annual": {
+        "label": "1 Anno",
+        "suffix": "/ anno"
+      },
+      "biennial": {
+        "label": "2 Anni",
+        "suffix": "/ 2 anni"
+      }
+    },
     "cardNumber": "Numero carta",
     "cardName": "Nome sulla carta",
     "expiry": "Data di scadenza (MM/AA)",
@@ -86,8 +122,7 @@
       "Modalità professionale discreta",
       "Spaziatura del testo regolabile",
       "Accesso su tutti i dispositivi"
-    ]
-    ,
+    ],
     "verifyEmailTitle": "Verifica la tua email",
     "verifyEmailSentTo": "Un link di conferma è stato inviato a",
     "verifyEmailClick": "Cliccalo per attivare il tuo account.",
@@ -103,12 +138,94 @@
     "popularSave": "Popolare · risparmia {{amount}} €",
     "bestPriceSave": "Miglior prezzo · risparmia {{amount}} €",
     "popularBadge": "POPOLARE",
-    "durations": { "biannual": "6 mesi", "annual": "1 anno", "biennial": "2 anni" },
-    "billing": { "biannual": { "label": "6 Mesi", "suffix": "/ 6 mesi" }, "annual": { "label": "1 Anno", "suffix": "/ anno" }, "biennial": { "label": "2 Anni", "suffix": "/ 2 anni" } },
-    "plans": { "free": { "description": "Discover what AI can do", "features": ["Base model","Message limits","Limited image generation","Limited memory"] }, "go": { "description": "Keep chatting with extended access", "features": ["Base model","Extended message limits","Extended image limits","Extended memory","Extended voice access"] }, "plus": { "description": "Enjoy the full experience", "features": ["Advanced models","Higher limits","Fast image generation","Extended chat memory","Codex coding agent"] }, "pro": { "description": "Maximize your productivity", "features": ["All Plus features","5x or 20x higher usage limit","Flagship Pro model","Max Codex access","Deep search"] } }
+    "durations": {
+      "biannual": "6 mesi",
+      "annual": "1 anno",
+      "biennial": "2 anni"
+    },
+    "plans": {
+      "free": {
+        "description": "Discover what AI can do",
+        "features": [
+          "Base model",
+          "Message limits",
+          "Limited image generation",
+          "Limited memory"
+        ]
+      },
+      "go": {
+        "description": "Keep chatting with extended access",
+        "features": [
+          "Base model",
+          "Extended message limits",
+          "Extended image limits",
+          "Extended memory",
+          "Extended voice access"
+        ]
+      },
+      "plus": {
+        "description": "Enjoy the full experience",
+        "features": [
+          "Advanced models",
+          "Higher limits",
+          "Fast image generation",
+          "Extended chat memory",
+          "Codex coding agent"
+        ]
+      },
+      "pro": {
+        "description": "Maximize your productivity",
+        "features": [
+          "All Plus features",
+          "5x or 20x higher usage limit",
+          "Flagship Pro model",
+          "Max Codex access",
+          "Deep search"
+        ]
+      }
+    }
   },
   "home": {
-    "features": { "badge": "Funzionalità", "title": "Strumenti pensati per te", "subtitle": "Ogni funzione è stata progettata con persone con dislessia per affrontare le sfide quotidiane.", "items": [ { "title": "Lettura audio", "desc": "Il testo viene letto ad alta voce con una voce naturale. Segui visivamente ogni parola evidenziata." }, { "title": "Assistenza alla scrittura", "desc": "Correzioni intelligenti e suggerimenti adattati agli errori comuni della dislessia." }, { "title": "Carattere Dyslexic", "desc": "Abilita il font OpenDyslexic per ancorare visivamente ogni lettera e ridurre la confusione." }, { "title": "Overlay colore", "desc": "Sovrapponi una tinta colorata al testo per ridurre l'affaticamento visivo." }, { "title": "Spaziatura del testo", "desc": "Regola la spaziatura per un comfort ottimale." }, { "title": "Riassunto IA", "desc": "Ottieni un riassunto semplificato di qualsiasi testo lungo in pochi secondi." } ] }
+    "features": {
+      "badge": "Funzionalità",
+      "title": "Strumenti pensati per te",
+      "subtitle": "Ogni funzione è stata progettata con persone con dislessia per affrontare le sfide quotidiane.",
+      "items": [
+        {
+          "title": "Lettura audio",
+          "desc": "Il testo viene letto ad alta voce con una voce naturale. Segui visivamente ogni parola evidenziata."
+        },
+        {
+          "title": "Assistenza alla scrittura",
+          "desc": "Correzioni intelligenti e suggerimenti adattati agli errori comuni della dislessia."
+        },
+        {
+          "title": "Carattere Dyslexic",
+          "desc": "Abilita il font OpenDyslexic per ancorare visivamente ogni lettera e ridurre la confusione."
+        },
+        {
+          "title": "Overlay colore",
+          "desc": "Sovrapponi una tinta colorata al testo per ridurre l'affaticamento visivo."
+        },
+        {
+          "title": "Spaziatura del testo",
+          "desc": "Regola la spaziatura per un comfort ottimale."
+        },
+        {
+          "title": "Riassunto IA",
+          "desc": "Ottieni un riassunto semplificato di qualsiasi testo lungo in pochi secondi."
+        }
+      ]
+    }
+  ,
+    "demoVideo": {
+      "title": "Scopri l'editor in azione",
+      "description": "Guarda questo breve video per capire come i nostri strumenti possono aiutarti a leggere e scrivere più facilmente.",
+      "videoFallback": "Il tuo browser non supporta il tag video."
+    }
+    ,
+    "audiencesTitle": "Per ogni età, ogni esigenza",
+    "audiencesMore": "Scopri di più →"
   },
   "profile": {
     "title": "Profilo",
@@ -131,16 +248,42 @@
     "deleteConfirm": "Eliminare definitivamente il tuo account?",
     "backHome": "← Torna alla home"
   },
-  "hero": {
-    "badge": "Intelligenza artificiale per tutti",
-    "title1": "Leggere e scrivere",
-    "title2": "senza barriere",
-    "title3": "per tutti.",
-    "subtitle": "Un'app intelligente pensata per le persone con dislessia, bambini e adulti — per leggere più facilmente, scrivere con fiducia e progredire al proprio ritmo.",
-    "cta": "Inizia gratuitamente",
-    "demo": "Guarda la demo"
-  },
   "footer": {
     "rights": "Tutti i diritti riservati."
+  }
+  ,
+  "editor": {
+    "backToHome": "← Torna alla home",
+    "title": "Supporto alla comunicazione",
+    "hintShort": "Digita una parola → previsione in tempo reale · spazio = leggi · selezione = leggi",
+    "quillPlaceholder": "Inizia a scrivere o usa la dettatura vocale…",
+    "errors": {
+      "selectTextWarning": "⚠️ Seleziona prima del testo",
+      "sttTranscribe": "Errore STT: Impossibile trascrivere",
+      "microphone": "Impossibile accedere al microfono",
+      "readFailed": "❌ Riproduzione fallita"
+    },
+    "tts": {
+      "transcription": "Trascrizione…",
+      "recordingStop": "🛑 Stop",
+      "dictation": "🎙️ Dettatura",
+      "reading": "Lettura…",
+      "readSelection": "🔊 Leggi la selezione",
+      "stop": "⏹ Stop",
+      "autoOn": "🔊 Auto : ON",
+      "autoOff": "🔇 Auto : OFF"
+    },
+    "settings": {
+      "open": "Chiudi",
+      "title": "Impostazioni"
+    },
+    "voiceSettings": {
+      "title": "🎛️ Impostazioni voce",
+      "speed": "🏃 Velocità",
+      "pitch": "🎵 Tonalità",
+      "volume": "🔈 Volume",
+      "reset": "↺ Ripristina"
+    },
+    "hint": "💡 Spazio = legge la parola · Selezione con il mouse = legge la frase · Clic sulla previsione = ascolta"
   }
 }

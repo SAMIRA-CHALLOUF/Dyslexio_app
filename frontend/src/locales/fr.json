@@ -43,7 +43,20 @@
     "chooseDuration": "Choisissez simplement la durée",
     "includedFeatures": "Inclus dans tous les forfaits",
     "summary": "Récapitulatif",
-    "billing": "Facturation",
+    "billing": {
+      "biannual": {
+        "label": "6 Mois",
+        "suffix": "/ 6 mois"
+      },
+      "annual": {
+        "label": "1 An",
+        "suffix": "/ an"
+      },
+      "biennial": {
+        "label": "2 Ans",
+        "suffix": "/ 2 ans"
+      }
+    },
     "cardNumber": "Numéro de carte",
     "cardName": "Nom sur la carte",
     "expiry": "Date d'expiration (MM/AA)",
@@ -66,8 +79,7 @@
       "Mode professionnel discret",
       "Espacement du texte ajustable",
       "Accès sur tous appareils"
-    ]
-    ,
+    ],
     "verifyEmailTitle": "Vérifiez votre email",
     "verifyEmailSentTo": "Un lien de confirmation a été envoyé à",
     "verifyEmailClick": "Cliquez dessus pour activer votre compte.",
@@ -88,36 +100,45 @@
       "annual": "1 an",
       "biennial": "2 ans"
     },
-    "billing": {
-      "biannual": {
-        "label": "6 Mois",
-        "suffix": "/ 6 mois"
-      },
-      "annual": {
-        "label": "1 An",
-        "suffix": "/ an"
-      },
-      "biennial": {
-        "label": "2 Ans",
-        "suffix": "/ 2 ans"
-      }
-    },
     "plans": {
       "free": {
         "description": "Découvrez ce que l'IA peut faire",
-        "features": ["Modèle de base", "Limites pour les messages", "Création d'images limitée", "Mémoire limitée"]
+        "features": [
+          "Modèle de base",
+          "Limites pour les messages",
+          "Création d'images limitée",
+          "Mémoire limitée"
+        ]
       },
       "go": {
         "description": "Continuez à discuter avec un accès étendu",
-        "features": ["Modèle de base", "Limites étendues pour les messages", "Limites étendues pour les images", "Mémoire étendue", "Accès étendu au mode vocal"]
+        "features": [
+          "Modèle de base",
+          "Limites étendues pour les messages",
+          "Limites étendues pour les images",
+          "Mémoire étendue",
+          "Accès étendu au mode vocal"
+        ]
       },
       "plus": {
         "description": "Bénéficiez d'une expérience complète",
-        "features": ["Modèles avancés", "Limites plus étendues", "Création d'images rapide", "Mémoire étendue dans les chats", "Agent de codage Codex"]
+        "features": [
+          "Modèles avancés",
+          "Limites plus étendues",
+          "Création d'images rapide",
+          "Mémoire étendue dans les chats",
+          "Agent de codage Codex"
+        ]
       },
       "pro": {
         "description": "Maximisez votre productivité",
-        "features": ["Toutes les fonctionnalités Plus", "Limite d'utilisation 5x ou 20x plus élevée", "Modèle phare Pro", "Accès maximal à Codex", "Recherche approfondie maximale"]
+        "features": [
+          "Toutes les fonctionnalités Plus",
+          "Limite d'utilisation 5x ou 20x plus élevée",
+          "Modèle phare Pro",
+          "Accès maximal à Codex",
+          "Recherche approfondie maximale"
+        ]
       }
     }
   },
@@ -127,33 +148,103 @@
       "title": "Des outils pensés pour vous",
       "subtitle": "Chaque fonctionnalité a été conçue avec des personnes dyslexiques pour répondre aux vrais défis du quotidien.",
       "items": [
-        { "title": "Lecture Audio", "desc": "Le texte est lu à voix haute avec une voix naturelle. Suivez visuellement chaque mot mis en surbrillance." },
-        { "title": "Aide à l'écriture", "desc": "Corrections intelligentes et suggestions adaptées aux erreurs fréquentes liées à la dyslexie." },
-        { "title": "Police Dyslexique", "desc": "Activez la police OpenDyslexic conçue pour ancrer visuellement chaque lettre et réduire la confusion." },
-        { "title": "Overlay de Couleur", "desc": "Superposez une teinte colorée sur le texte pour réduire la fatigue visuelle et le décrochage des lignes." },
-        { "title": "Espacement du Texte", "desc": "Ajustez librement les espacements entre lettres, mots et lignes pour un confort optimal." },
-        { "title": "Résumé IA", "desc": "Obtenez un résumé simplifié de n'importe quel texte long en quelques secondes grâce à l'IA." }
+        {
+          "title": "Lecture Audio",
+          "desc": "Le texte est lu à voix haute avec une voix naturelle. Suivez visuellement chaque mot mis en surbrillance."
+        },
+        {
+          "title": "Aide à l'écriture",
+          "desc": "Corrections intelligentes et suggestions adaptées aux erreurs fréquentes liées à la dyslexie."
+        },
+        {
+          "title": "Police Dyslexique",
+          "desc": "L'éditeur utilise la police Atkinson Hyperlegible, spécialement conçue pour offrir une lisibilité optimale et réduire la fatigue visuelle."
+        },
+        {
+          "title": "Dictée Vocale",
+          "desc": "Parlez au lieu d'écrire. La dictée vocale transforme instantanément votre voix en texte avec précision."
+        },
+        {
+          "title": "Prédiction de Mots",
+          "desc": "Des suggestions intelligentes apparaissent en temps réel au fil de votre frappe pour faciliter la rédaction."
+        },
+        {
+          "title": "Paramètres Vocaux",
+          "desc": "Ajustez la vitesse, la tonalité et le volume de la lecture audio pour l'adapter parfaitement à vos besoins."
+        }
       ]
     },
+    "how": {
+    "title": "Commencez en trois étapes.."
+    },  
     "steps": [
-      { "title": "Collez ou écrivez votre texte", "desc": "Importez un document, collez du texte ou commencez à écrire directement dans l'éditeur." },
-      { "title": "Choisissez vos outils", "desc": "Activez la lecture audio, ajustez la police ou les couleurs selon votre confort personnel." },
-      { "title": "Lisez et écrivez mieux", "desc": "Profitez d'une expérience adaptée à votre rythme, accessible partout et à tout moment." }
-    ],
+  {
+    "title": "Collez ou écrivez votre texte",
+    "desc": "Importez un document, collez du texte ou commencez à écrire directement dans l'éditeur."
+  },
+  {
+    "title": "Choisissez vos outils",
+    "desc": "Activez la lecture audio, ajustez la police ou les couleurs selon votre confort personnel."
+  },
+  {
+    "title": "Lisez et écrivez mieux",
+    "desc": "Profitez d'une expérience adaptée à votre rythme, accessible partout et à tout moment."
+  }
+  ],
     "audiences": [
-      { "label": "Enfants", "age": "6 – 16 ans", "points": ["Interface ludique et colorée","Mode classe pour les enseignants","Exercices de lecture guidés","Progrès suivis avec les parents"] },
-      { "label": "Adultes", "age": "17 ans et plus", "points": ["Intégration email et Word","Mode professionnel discret","Résumés de documents longs","Utilisation en mobilité"] }
+      {
+        "label": "Enfants",
+        "age": "6 – 16 ans",
+        "points": [
+          "Lecture audio pour un suivi facilité",
+          "Police adaptée pour réduire l'effort visuel",
+          "Prédiction de mots pour éviter les blocages",
+          "Ajustement vocal (vitesse et tonalité sur-mesure)"
+        ]
+      },
+      {
+        "label": "Adultes",
+        "age": "17 ans et plus",
+        "points": [
+          "Dictée vocale pour une rédaction rapide",
+          "Correction intelligente et en temps réel",
+          "Assistance à la frappe pour des textes professionnels",
+          "Interface discrète et paramètres hautement personnalisables"
+        ]
+      }
     ],
-    "testimonials": [
-      { "role": "Mère d'un enfant dyslexique", "text": "Mon fils de 9 ans a retrouvé le goût de lire grâce à la police dyslexique et à la lecture audio. En seulement 3 mois, ses notes ont progressé." },
-      { "role": "Ingénieur, diagnostiqué à 28 ans", "text": "Enfin un outil qui m'accompagne au travail sans attirer l'attention. Je rédige mes rapports bien plus sereinement." },
-      { "role": "Enseignante CP", "text": "J'utilise l'application avec toute ma classe. L'overlay de couleur a transformé les séances de lecture pour mes Organisations à besoins spécifiques." }
-    ],
+    "testimonials": {
+    "badge": "Témoignages",
+    "title": "Ce que disent nos utilisateurs",
+    "subtitle": "Des milliers de familles nous font confiance",
+    "items": [
+      {
+        "role": "Mère d'un enfant dyslexique",
+        "text": "Mon fils de 9 ans a retrouvé le goût de lire grâce à la police dyslexique et à la lecture audio. En seulement 3 mois, ses notes ont progressé."
+      },
+    {
+      "role": "Ingénieur, diagnostiqué à 28 ans",
+      "text": "Enfin un outil qui m'accompagne au travail sans attirer l'attention. Je rédige mes rapports bien plus sereinement."
+    },
+    {
+      "role": "Enseignante CP",
+      "text": "J'utilise l'application avec toute ma classe. L'overlay de couleur a transformé les séances de lecture pour mes élèves à besoins spécifiques."
+    } 
+    ]
+  },
     "stats": [
       "de la population est dyslexique",
       "des utilisateurs progressent en 1 mois",
       "familles accompagnées"
-    ]
+    ],
+    "demoVideo": {
+      "title": "Découvrez l'éditeur en action",
+      "description": "Regardez cette courte vidéo pour comprendre comment nos outils peuvent vous aider à lire et écrire plus facilement.",
+      "videoFallback": "Votre navigateur ne supporte pas la balise vidéo."
+    }
+    ,
+    "audiencesTitle": "Pour chaque âge, chaque besoin",
+    "audiencesMore": "En savoir plus →"
   },
   "hero": {
     "badge": "Intelligence Artificielle au service de tous",
@@ -170,11 +261,34 @@
       "color": "🎨 Couleur"
     },
     "dyslexia": {
-      "parts": ["La ", "dyslexie ", "est une ", "difficulté ", "d'apprentissage "],
+      "parts": [
+        "La ",
+        "dyslexie ",
+        "est une ",
+        "difficulté ",
+        "d'apprentissage "
+      ],
       "post": "qui touche la lecture et l'écriture. Avec les bons outils, chacun peut progresser à son rythme."
     },
     "readProgressLabel": "Progression de lecture",
-    "readMode": "📖 Mode Lecture"
+    "readMode": "📖 Mode Lecture",
+    "slide2": {
+      "badge": "Reconnaissance Vocale",
+      "title1": "Transformez votre",
+      "title2": "voix",
+      "title3": "en texte parfait.",
+      "subtitle": "Libérez votre créativité ! Dictez vos idées naturellement et laissez notre assistant intelligent transcrire et corriger vos textes instantanément.",
+      "aiSuccess": "Correction IA appliquée avec succès !"
+    },
+    "slide3": {
+      "badge": "Tableau de bord",
+      "title1": "Visualisez vos",
+      "title2": "progrès",
+      "title3": "au quotidien.",
+      "subtitle": "Des statistiques claires, visuelles et encourageantes pour les élèves, avec un suivi détaillé adapté aux parents et professionnels de santé.",
+      "booksRead": "Livres lus",
+      "avgScore": "Score moyen"
+    }
   },
   "predictor": {
     "title": "Prédictions",
@@ -214,8 +328,42 @@
     "deleteConfirm": "Supprimer votre compte définitivement ?",
     "backHome": "← Retour à l'accueil"
   },
-  
   "footer": {
     "rights": "Tous droits réservés."
+  }
+  ,
+  "editor": {
+    "backToHome": "← Retour à l'accueil",
+    "title": "Aide à la Communication",
+    "hintShort": "Tapez un mot → prédiction en temps réel · espace = lecture · sélection = lecture",
+    "quillPlaceholder": "Commencez à écrire ou utilisez la dictée vocale…",
+    "errors": {
+      "selectTextWarning": "⚠️ Sélectionnez du texte d'abord",
+      "sttTranscribe": "Erreur STT : Impossible de transcrire",
+      "microphone": "Accès impossible au microphone",
+      "readFailed": "❌ Lecture échouée"
+    },
+    "tts": {
+      "transcription": "Transcription…",
+      "recordingStop": "🛑 Stopper",
+      "dictation": "🎙️ Dictée vocale",
+      "reading": "Lecture…",
+      "readSelection": "🔊 Lire la sélection",
+      "stop": "⏹ Stop",
+      "autoOn": "🔊 Auto : ON",
+      "autoOff": "🔇 Auto : OFF"
+    },
+    "settings": {
+      "open": "Fermer",
+      "title": "Paramètres"
+    },
+    "voiceSettings": {
+      "title": "🎛️ Paramètres de la voix",
+      "speed": "🏃 Vitesse",
+      "pitch": "🎵 Tonalité",
+      "volume": "🔈 Volume",
+      "reset": "↺ Réinitialiser"
+    },
+    "hint": "💡 Espace = lit le mot · Sélection souris = lit la phrase · Clic sur prédiction = audition"
   }
 }

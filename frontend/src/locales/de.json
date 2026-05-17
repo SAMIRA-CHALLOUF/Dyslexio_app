@@ -16,7 +16,12 @@
     "title": "Vorhersagen",
     "backend": "Backend NestJS",
     "auto": "🌐 Auto",
-    "tool": { "picture": "Bild", "correction": "Korrektur", "reading": "Lesen", "settings": "Einstellungen" },
+    "tool": {
+      "picture": "Bild",
+      "correction": "Korrektur",
+      "reading": "Lesen",
+      "settings": "Einstellungen"
+    },
     "backendNotFound": "Backend nicht gefunden (prüfe, dass NestJS auf Port 3001 läuft)",
     "backendError": "Verbindungsfehler zum Backend",
     "correctionError": "Fehler bei der Korrektur. Prüfe, dass Ollama + Mistral laufen.",
@@ -55,7 +60,20 @@
     "chooseDuration": "Wählen Sie einfach die Laufzeit",
     "includedFeatures": "In allen Paketen enthalten",
     "summary": "Zusammenfassung",
-    "billing": "Abrechnung",
+    "billing": {
+      "biannual": {
+        "label": "6 Monate",
+        "suffix": "/ 6 Monate"
+      },
+      "annual": {
+        "label": "1 Jahr",
+        "suffix": "/ Jahr"
+      },
+      "biennial": {
+        "label": "2 Jahre",
+        "suffix": "/ 2 Jahre"
+      }
+    },
     "cardNumber": "Kartennummer",
     "cardName": "Name auf der Karte",
     "expiry": "Ablaufdatum (MM/JJ)",
@@ -99,16 +117,46 @@
       "annual": "1 Jahr",
       "biennial": "2 Jahre"
     },
-    "billing": {
-      "biannual": { "label": "6 Monate", "suffix": "/ 6 Monate" },
-      "annual": { "label": "1 Jahr", "suffix": "/ Jahr" },
-      "biennial": { "label": "2 Jahre", "suffix": "/ 2 Jahre" }
-    },
     "plans": {
-      "free": { "description": "Discover what AI can do", "features": ["Base model","Message limits","Limited image generation","Limited memory"] },
-      "go": { "description": "Keep chatting with extended access", "features": ["Base model","Extended message limits","Extended image limits","Extended memory","Extended voice access"] },
-      "plus": { "description": "Enjoy the full experience", "features": ["Advanced models","Higher limits","Fast image generation","Extended chat memory","Codex coding agent"] },
-      "pro": { "description": "Maximize your productivity", "features": ["All Plus features","5x or 20x higher usage limit","Flagship Pro model","Max Codex access","Deep search"] }
+      "free": {
+        "description": "Discover what AI can do",
+        "features": [
+          "Base model",
+          "Message limits",
+          "Limited image generation",
+          "Limited memory"
+        ]
+      },
+      "go": {
+        "description": "Keep chatting with extended access",
+        "features": [
+          "Base model",
+          "Extended message limits",
+          "Extended image limits",
+          "Extended memory",
+          "Extended voice access"
+        ]
+      },
+      "plus": {
+        "description": "Enjoy the full experience",
+        "features": [
+          "Advanced models",
+          "Higher limits",
+          "Fast image generation",
+          "Extended chat memory",
+          "Codex coding agent"
+        ]
+      },
+      "pro": {
+        "description": "Maximize your productivity",
+        "features": [
+          "All Plus features",
+          "5x or 20x higher usage limit",
+          "Flagship Pro model",
+          "Max Codex access",
+          "Deep search"
+        ]
+      }
     }
   },
   "home": {
@@ -117,33 +165,95 @@
       "title": "Tools für Sie entwickelt",
       "subtitle": "Jedes Feature wurde mit Menschen mit Legasthenie entwickelt, um reale tägliche Herausforderungen zu meistern.",
       "items": [
-        { "title": "Audio-Lesen", "desc": "Text wird mit natürlicher Stimme laut vorgelesen. Folgen Sie jedem hervorgehobenen Wort visuell." },
-        { "title": "Schreibhilfe", "desc": "Intelligente Korrekturen und Vorschläge, die auf häufige Legasthenie-Fehler zugeschnitten sind." },
-        { "title": "Dyslexische Schriftart", "desc": "Aktivieren Sie die OpenDyslexic-Schriftart, um jeden Buchstaben visuell zu verankern und Verwirrung zu reduzieren." },
-        { "title": "Farbüberlagerung", "desc": "Überlagern Sie einen farbigen Farbton über den Text, um visuelle Ermüdung und Zeilenabbau zu reduzieren." },
-        { "title": "Textabstand", "desc": "Passen Sie den Abstand zwischen Buchstaben, Wörtern und Zeilen für optimalen Komfort an." },
-        { "title": "KI-Zusammenfassung", "desc": "Erhalten Sie in Sekunden eine vereinfachte Zusammenfassung jedes langen Textes mithilfe von KI." }
+        {
+          "title": "Audio-Lesen",
+          "desc": "Text wird mit natürlicher Stimme laut vorgelesen. Folgen Sie jedem hervorgehobenen Wort visuell."
+        },
+        {
+          "title": "Schreibhilfe",
+          "desc": "Intelligente Korrekturen und Vorschläge, die auf häufige Legasthenie-Fehler zugeschnitten sind."
+        },
+        {
+          "title": "Dyslexische Schriftart",
+          "desc": "Aktivieren Sie die OpenDyslexic-Schriftart, um jeden Buchstaben visuell zu verankern und Verwirrung zu reduzieren."
+        },
+        {
+          "title": "Farbüberlagerung",
+          "desc": "Überlagern Sie einen farbigen Farbton über den Text, um visuelle Ermüdung und Zeilenabbau zu reduzieren."
+        },
+        {
+          "title": "Textabstand",
+          "desc": "Passen Sie den Abstand zwischen Buchstaben, Wörtern und Zeilen für optimalen Komfort an."
+        },
+        {
+          "title": "KI-Zusammenfassung",
+          "desc": "Erhalten Sie in Sekunden eine vereinfachte Zusammenfassung jedes langen Textes mithilfe von KI."
+        }
       ]
     },
     "steps": [
-      { "title": "Collez ou écrivez votre texte", "desc": "Importez un document, collez du texte ou commencez à écrire directement dans l'éditeur." },
-      { "title": "Choisissez vos outils", "desc": "Activez la lecture audio, ajustez la police ou les couleurs selon votre confort personnel." },
-      { "title": "Lisez et écrivez mieux", "desc": "Profitez d'une expérience adaptée à votre rythme, accessible partout et à tout moment." }
+      {
+        "title": "Collez ou écrivez votre texte",
+        "desc": "Importez un document, collez du texte ou commencez à écrire directement dans l'éditeur."
+      },
+      {
+        "title": "Choisissez vos outils",
+        "desc": "Activez la lecture audio, ajustez la police ou les couleurs selon votre confort personnel."
+      },
+      {
+        "title": "Lisez et écrivez mieux",
+        "desc": "Profitez d'une expérience adaptée à votre rythme, accessible partout et à tout moment."
+      }
     ],
     "audiences": [
-      { "label": "Enfants", "age": "6 – 16 ans", "points": ["Interface ludique et colorée","Mode classe pour les enseignants","Exercices de lecture guidés","Progrès suivis avec les parents"] },
-      { "label": "Adultes", "age": "17 ans et plus", "points": ["Intégration email et Word","Mode professionnel discret","Résumés de documents longs","Utilisation en mobilité"] }
+      {
+        "label": "Enfants",
+        "age": "6 – 16 ans",
+        "points": [
+          "Interface ludique et colorée",
+          "Mode classe pour les enseignants",
+          "Exercices de lecture guidés",
+          "Progrès suivis avec les parents"
+        ]
+      },
+      {
+        "label": "Adultes",
+        "age": "17 ans et plus",
+        "points": [
+          "Intégration email et Word",
+          "Mode professionnel discret",
+          "Résumés de documents longs",
+          "Utilisation en mobilité"
+        ]
+      }
     ],
     "testimonials": [
-      { "role": "Mère d'un enfant dyslexique", "text": "Mon fils de 9 ans a retrouvé le goût de lire grâce à la police dyslexique et à la lecture audio. En seulement 3 mois, ses notes ont progressé." },
-      { "role": "Ingénieur, diagnostiqué à 28 ans", "text": "Enfin un outil qui m'accompagne au travail sans attirer l'attention. Je rédige mes rapports bien plus sereinement." },
-      { "role": "Enseignante CP", "text": "J'utilise l'application avec toute ma classe. L'overlay de couleur a transformé les séances de lecture pour mes Organisations à besoins spécifiques." }
+      {
+        "role": "Mère d'un enfant dyslexique",
+        "text": "Mon fils de 9 ans a retrouvé le goût de lire grâce à la police dyslexique et à la lecture audio. En seulement 3 mois, ses notes ont progressé."
+      },
+      {
+        "role": "Ingénieur, diagnostiqué à 28 ans",
+        "text": "Enfin un outil qui m'accompagne au travail sans attirer l'attention. Je rédige mes rapports bien plus sereinement."
+      },
+      {
+        "role": "Enseignante CP",
+        "text": "J'utilise l'application avec toute ma classe. L'overlay de couleur a transformé les séances de lecture pour mes Organisations à besoins spécifiques."
+      }
     ],
     "stats": [
       "de la population est dyslexique",
       "des utilisateurs progressent en 1 mois",
       "familles accompagnées"
-    ]
+    ],
+    "demoVideo": {
+      "title": "Sehen Sie den Editor in Aktion",
+      "description": "Sehen Sie dieses kurze Video, um zu verstehen, wie unsere Werkzeuge Ihnen beim Lesen und Schreiben helfen können.",
+      "videoFallback": "Ihr Browser unterstützt das Video-Tag nicht."
+    }
+    ,
+    "audiencesTitle": "Für jedes Alter, jedes Bedürfnis",
+    "audiencesMore": "Mehr erfahren →"
   },
   "profile": {
     "title": "Profil",
@@ -175,12 +285,77 @@
     "cta": "Kostenlos starten",
     "demo": "Demo ansehen",
     "statsLine": "<b>50.000+</b> Familien begleitet ⭐ 4.9/5",
-    "toolbar": { "listen": "🔊 Anhören", "font": "🔤 Schrift", "color": "🎨 Farbe" },
-    "dyslexia": { "parts": ["La ", "Dyslexie ", "ist eine ", "Schwierigkeit ", "beim Lernen "], "post": "die Lesen und Schreiben betrifft. Mit den richtigen Werkzeugen kann jeder in seinem Tempo Fortschritte machen." },
+    "toolbar": {
+      "listen": "🔊 Anhören",
+      "font": "🔤 Schrift",
+      "color": "🎨 Farbe"
+    },
+    "dyslexia": {
+      "parts": [
+        "La ",
+        "Dyslexie ",
+        "ist eine ",
+        "Schwierigkeit ",
+        "beim Lernen "
+      ],
+      "post": "die Lesen und Schreiben betrifft. Mit den richtigen Werkzeugen kann jeder in seinem Tempo Fortschritte machen."
+    },
     "readProgressLabel": "Lese-Fortschritt",
-    "readMode": "📖 Lesemodus"
+    "readMode": "📖 Lesemodus",
+    "slide2": {
+      "badge": "Spracherkennung",
+      "title1": "Verwandle deine",
+      "title2": "Stimme",
+      "title3": "in perfekten Text.",
+      "subtitle": "Entfalte deine Kreativität! Diktiere deine Ideen natürlich und lass unseren intelligenten Assistenten deine Texte sofort transkribieren und korrigieren.",
+      "aiSuccess": "KI-Korrektur erfolgreich angewendet!"
+    },
+    "slide3": {
+      "badge": "Dashboard",
+      "title1": "Visualisiere deinen",
+      "title2": "Fortschritt",
+      "title3": "täglich.",
+      "subtitle": "Klare, visuelle und ermutigende Statistiken für Schüler, mit detaillierter Verfolgung für Eltern und Fachleute aus dem Gesundheitswesen.",
+      "booksRead": "Gelesene Bücher",
+      "avgScore": "Durchschnitt"
+    }
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten."
+  }
+  ,
+  "editor": {
+    "backToHome": "← Zurück zur Startseite",
+    "title": "Kommunikationshilfe",
+    "hintShort": "Geben Sie ein Wort ein → Echtzeit-Vorhersage · Leertaste = lesen · Auswahl = lesen",
+    "quillPlaceholder": "Beginnen Sie zu schreiben oder verwenden Sie die Diktierfunktion…",
+    "errors": {
+      "selectTextWarning": "⚠️ Bitte zuerst Text auswählen",
+      "sttTranscribe": "STT-Fehler: Transkription fehlgeschlagen",
+      "microphone": "Zugriff auf das Mikrofon nicht möglich",
+      "readFailed": "❌ Wiedergabe fehlgeschlagen"
+    },
+    "tts": {
+      "transcription": "Transkription…",
+      "recordingStop": "🛑 Stop",
+      "dictation": "🎙️ Diktat",
+      "reading": "Wiedergabe…",
+      "readSelection": "🔊 Auswahl vorlesen",
+      "stop": "⏹ Stop",
+      "autoOn": "🔊 Auto : ON",
+      "autoOff": "🔇 Auto : OFF"
+    },
+    "settings": {
+      "open": "Schließen",
+      "title": "Einstellungen"
+    },
+    "voiceSettings": {
+      "title": "🎛️ Stimmeinstellungen",
+      "speed": "🏃 Geschwindigkeit",
+      "pitch": "🎵 Tonhöhe",
+      "volume": "🔈 Lautstärke",
+      "reset": "↺ Zurücksetzen"
+    },
+    "hint": "💡 Leertaste = Wort vorlesen · Auswahl mit Maus = Satz vorlesen · Klick auf Vorhersage = Anhören"
   }
 }

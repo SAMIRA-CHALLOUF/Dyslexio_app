@@ -1,14 +1,16 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { AUDIENCES } from '../../constants/content';
 import { DARK } from '../../constants/colors';
 
 export default function Audiences() {
+  const { t } = useTranslation();
   return (
     <section style={{ padding: "4rem 2rem" }}>
       <div style={{ maxWidth: 900, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <h2 style={{ fontFamily: "'Nunito', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 900, color: DARK }}>
-            Pour chaque âge, chaque besoin
+            {t('home.audiencesTitle')}
           </h2>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "2rem" }}>
@@ -21,9 +23,9 @@ export default function Audiences() {
               <div style={{ background: a.bg, padding: "2rem", textAlign: "center" }}>
                 <div style={{ fontSize: 52 }}>{a.emoji}</div>
                 <div style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 900, fontSize: "1.5rem", color: a.color, marginTop: 8 }}>
-                  {a.label}
+                  {t(a.label)}
                 </div>
-                <div style={{ fontSize: "0.82rem", color: "#777", marginTop: 4 }}>{a.age}</div>
+                <div style={{ fontSize: "0.82rem", color: "#777", marginTop: 4 }}>{t(a.age)}</div>
               </div>
               <div style={{ padding: "1.5rem" }}>
                 {a.points.map((p) => (
@@ -35,7 +37,7 @@ export default function Audiences() {
                     }}>
                       <div style={{ width: 8, height: 8, borderRadius: "50%", background: a.color }} />
                     </div>
-                    <span style={{ fontSize: "0.92rem", color: "#444", lineHeight: 1.5 }}>{p}</span>
+                    <span style={{ fontSize: "0.92rem", color: "#444", lineHeight: 1.5 }}>{t(p)}</span>
                   </div>
                 ))}
                 <button style={{
@@ -45,7 +47,7 @@ export default function Audiences() {
                   fontWeight: 700, fontSize: "0.95rem", cursor: "pointer",
                   boxShadow: `0 4px 16px ${a.color}44`,
                 }}>
-                  En savoir plus →
+                  {t('home.audiencesMore')}
                 </button>
               </div>
             </div>

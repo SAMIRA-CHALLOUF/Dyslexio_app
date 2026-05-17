@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 const TEAL = '#0D9373';
 
 // ─── Step indicator ───────────────────────────────────────────────────────────
-const Steps = ({ current, isEleve }) => {
+const Steps = ({ current, isEtablissement }) => {
   const { t } = useTranslation();
-  const labels = isEleve ? [t('auth.stepInfo')] : [t('auth.stepInfo'), t('auth.stepSubscription'), t('auth.stepPayment')];
-  if (isEleve) return null;
+  const labels = isEtablissement ? [t('auth.stepInfo')] : [t('auth.stepInfo'), t('auth.stepSubscription'), t('auth.stepPayment')];
+  if (isEtablissement) return null;
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
       {labels.map((label, i) => {
@@ -88,7 +88,7 @@ const StepInfo = ({ formData, setFormData, onNext, onSubmitDirect, loading, erro
   const [preview, setPreview] = useState(null);
   const fileRef = useRef();
 
-  const isEleve = formData.typeCompte === 'eleve';
+  const isEtablissement = formData.typeCompte === 'etablissement';
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -110,7 +110,7 @@ const StepInfo = ({ formData, setFormData, onNext, onSubmitDirect, loading, erro
       setLocalError(t('auth.passwordNoMatch'));
       return;
     }
-    if (isEleve) {
+    if (isEtablissement) {
       onSubmitDirect();
     } else {
       onNext();
@@ -172,14 +172,14 @@ const StepInfo = ({ formData, setFormData, onNext, onSubmitDirect, loading, erro
         <div>
           <label style={labelStyle}>{t('auth.accountType')}</label>
           <div style={{ display: 'flex', gap: 8 }}>
-            {['eleve', 'client'].map(type => (
+            {['etablissement', 'client'].map(type => (
               <button key={type} type="button" onClick={() => setFormData(p => ({ ...p, typeCompte: type }))}
                 style={{
                   flex: 1, padding: '6px 0', border: `1.5px solid ${formData.typeCompte === type ? TEAL : '#e2e8f0'}`,
                   borderRadius: 10, background: formData.typeCompte === type ? `${TEAL}15` : '#f8fafc',
                   color: formData.typeCompte === type ? TEAL : '#64748b', fontWeight: 700, fontSize: 12, cursor: 'pointer',
                 }}>
-                {type === 'eleve' ? t('auth.student') : t('auth.client')}
+                {type === 'etablissement' ? 'Etablissement' : t('auth.client')}
               </button>
             ))}
           </div>
@@ -226,7 +226,7 @@ const StepInfo = ({ formData, setFormData, onNext, onSubmitDirect, loading, erro
       }}>
         {loading
           ? t('auth.creating')
-          : isEleve
+          : isEtablissement
             ? t('auth.createBtn')
             : t('auth.next')
         }
@@ -445,11 +445,11 @@ const SignUp = ({ onStepChange }) => {
   const [formData, setFormData] = useState({
     nom: '', prenom: '', email: '',
     motDePasse: '', confirmationMotDePasse: '',
-    typeCompte: 'eleve', photo: null,
+    typeCompte: 'etablissement', photo: null,
     plan: 'plus', billing: 'annual',
   });
 
-  const isEleve = formData.typeCompte === 'eleve';
+  const isEtablissement = formData.typeCompte === 'etablissement';
 
   const handleSetStep = (newStep) => {
     setStep(newStep);
@@ -460,29 +460,17 @@ const SignUp = ({ onStepChange }) => {
     setLoading(true);
     setError('');
     try {
-      const endpoint = isEleve
-        ? 'http://localhost:3001/eleve'
-        : 'http://localhost:3001/client';
+      const endpoint = 'http://localhost:3001/auth/register';
 
-      // ✅ JSON au lieu de FormData
-      const body = isEleve
-        ? {
-            nom:                    formData.nom,
-            prenom:                 formData.prenom,
-            email:                  formData.email,
-            motDePasse:             formData.motDePasse,
-            confirmationMotDePasse: formData.confirmationMotDePasse,
-            typeCompte:             formData.typeCompte,
-          }
-        : {
-            nom:                    formData.nom,
-            prenom:                 formData.prenom,
-            email:                  formData.email,
-            motDePasse:             formData.motDePasse,
-            confirmationMotDePasse: formData.confirmationMotDePasse,
-            typeCompte:             formData.typeCompte,
-            billingPeriod:          formData.billing,
-          };
+      const body = {
+        nom:                    formData.nom,
+        prenom:                 formData.prenom,
+        email:                  formData.email,
+        motDePasse:             formData.motDePasse,
+        confirmationMotDePasse: formData.confirmationMotDePasse,
+        typeCompte:             formData.typeCompte,
+        ...(formData.typeCompte === 'client' && { billingPeriod: formData.billing }),
+      };
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -495,17 +483,16 @@ const SignUp = ({ onStepChange }) => {
         let msg = t('auth.errorCreate');
         try {
           const parsed = JSON.parse(text);
-          // NestJS renvoie parfois message comme tableau
           if (Array.isArray(parsed.message)) msg = parsed.message[0];
           else msg = parsed.message || msg;
         } catch {}
         throw new Error(msg);
       }
 
-      if (isEleve) {
-        setSuccess(true); // élève → compte créé direct
+      if (isEtablissement) {
+        setSuccess(true); 
       } else {
-        setPendingEmail(formData.email); // client → page vérification email
+        setPendingEmail(formData.email);
       }
 
     } catch (err) {
@@ -515,16 +502,15 @@ const SignUp = ({ onStepChange }) => {
     }
   };
 
-  // Client → afficher page vérification email
   if (pendingEmail) {
     return <PendingVerification email={pendingEmail} />;
   }
 
-  const titles = isEleve
+  const titles = isEtablissement
     ? [t('auth.createAccount')]
     : [t('auth.createAccount'), t('auth.chooseSubscription'), t('auth.paymentInfo')];
 
-  const subtitles = isEleve
+  const subtitles = isEtablissement
     ? [t('auth.fillInfo')]
     : [t('auth.fillInfo'), t('auth.choosePlan'), t('auth.finalizeSecure')];
 
@@ -537,7 +523,7 @@ const SignUp = ({ onStepChange }) => {
         {subtitles[step] ?? subtitles[0]}
       </p>
 
-      {!isEleve && <Steps current={step} isEleve={isEleve} />}
+      {!isEtablissement && <Steps current={step} isEtablissement={isEtablissement} />}
 
       {step === 0 && (
         <StepInfo
@@ -547,14 +533,14 @@ const SignUp = ({ onStepChange }) => {
           loading={loading} error={error} success={success}
         />
       )}
-      {step === 1 && !isEleve && (
+      {step === 1 && !isEtablissement && (
         <StepSubscription
           formData={formData} setFormData={setFormData}
           onNext={() => handleSetStep(2)}
           onBack={() => handleSetStep(0)}
         />
       )}
-      {step === 2 && !isEleve && (
+      {step === 2 && !isEtablissement && (
         <StepPayment
           formData={formData}
           onBack={() => handleSetStep(1)}

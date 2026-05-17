@@ -1,32 +1,66 @@
-import { IsString, IsEmail, IsEnum, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
-import { AccountType } from '../enums/account-type.enum';
+import {
+  IsString, IsNotEmpty, IsOptional,
+  IsNumber, IsEnum, Min,
+} from 'class-validator';
+import { Type } from 'class-transformer';
+import { PaiementStatut, PaiementMethode } from '../eleve.entity';
 
 export class CreateEleveDto {
+  // ── Identité ────────────────────────────────────────────────────────────────
   @IsString()
-  @IsNotEmpty({ message: 'Le nom est obligatoire' })
+  @IsNotEmpty()
   nom!: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'Le prénom est obligatoire' })
+  @IsNotEmpty()
   prenom!: string;
 
   @IsOptional()
   @IsString()
-  image?: string;
+  email?: string;
 
-  @IsEnum(AccountType, { message: 'Le type de compte doit être client ou eleve' })
-  typeCompte!: AccountType;
+  @IsOptional()
+  @IsString()
+  telephone?: string;
 
-  @IsEmail({}, { message: 'Email invalide' })
-  @IsNotEmpty({ message: "L'email est obligatoire" })
-  email!: string;
+  // ── Scolarité ───────────────────────────────────────────────────────────────
+  @IsString()
+  @IsNotEmpty()
+  classe!: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'Le mot de passe est obligatoire' })
-  @MinLength(6, { message: 'Le mot de passe doit contenir au moins 6 caractères' })
-  motDePasse!: string;
+  @IsNotEmpty()
+  niveau!: string;
+
+  // ── Parent ──────────────────────────────────────────────────────────────────
+  @IsString()
+  @IsNotEmpty()
+  parentNom!: string;
 
   @IsString()
-  @IsNotEmpty({ message: 'La confirmation du mot de passe est obligatoire' })
-  confirmationMotDePasse!: string;
+  @IsNotEmpty()
+  parentTelephone!: string;
+
+  // ── Paiement ────────────────────────────────────────────────────────────────
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(0)
+  montant?: number;
+
+  @IsOptional()
+  @IsEnum(PaiementStatut)
+  paiementStatut?: PaiementStatut;
+
+  @IsOptional()
+  @IsEnum(PaiementMethode)
+  paiementMethode?: PaiementMethode;
+
+  @IsOptional()
+  @IsString()
+  paiementReference?: string;
+
+  @IsOptional()
+  @IsString()
+  datePaiement?: string;
 }

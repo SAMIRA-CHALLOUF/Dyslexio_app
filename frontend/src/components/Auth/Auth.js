@@ -1,12 +1,14 @@
 // src/components/Auth/Auth.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importer useNavigate
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import { TEAL } from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 
 const Auth = ({ defaultSignUp = false, onClose, onLoginSuccess }) => {
-  const { t } = useTranslation(); // ✅ INSIDE the component
+  const { t } = useTranslation();
+  const navigate = useNavigate(); // Utiliser le hook
   const [isSignUp, setIsSignUp] = useState(defaultSignUp);
   const [signUpStep, setSignUpStep] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,19 @@ const Auth = ({ defaultSignUp = false, onClose, onLoginSuccess }) => {
 
       const { access_token, user } = result;
       localStorage.setItem('token', access_token);
-      if (onLoginSuccess) onLoginSuccess(user);
+      
+      // 1. Sauvegarder l'état de l'utilisateur AVANT toute redirection
+      if (onLoginSuccess) {
+        onLoginSuccess(user);
+      }
+
+      // 2. Rediriger en utilisant navigate
+      if (user.typeCompte === 'admin') {
+        navigate('/admin');
+      } else if (user.typeCompte === 'etablissement') {
+        navigate('/dashboard');
+      }
+      // Pour les autres utilisateurs, onLoginSuccess a déjà fermé la modale
 
     } catch (err) {
       console.error('Erreur connexion:', err);

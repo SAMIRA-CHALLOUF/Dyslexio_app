@@ -1,51 +1,142 @@
-import React from 'react';
-import { TEAL, DARK } from '../../constants/colors';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export default function CTA() {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
   return (
-    <section style={{ padding: "5rem 2rem" }}>
+    <section style={{
+      padding: "80px 24px",
+      background: "#fff",
+      borderTop: "1px solid #F0F0F0",
+    }}>
       <div style={{
-        maxWidth: 800, margin: "0 auto", textAlign: "center",
-        background: `linear-gradient(135deg, ${DARK} 0%, #2D4A3E 100%)`,
-        borderRadius: 32, padding: "4rem 3rem",
-        boxShadow: `0 20px 60px ${DARK}44`,
-        position: "relative", overflow: "hidden",
+        maxWidth: 900,
+        margin: "0 auto",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 48,
+        flexWrap: "wrap",
       }}>
+        {/* Left: text */}
+        <div style={{ flex: 1, minWidth: 280 }}>
+          <div style={{
+            display: "inline-block",
+            background: "#E8F5F0",
+            color: "#1A8A6C",
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: ".08em",
+            textTransform: "uppercase",
+            padding: "4px 12px",
+            borderRadius: 99,
+            marginBottom: 16,
+          }}>
+            Essai maintenant
+          </div>
+
+          <h2 style={{
+            fontSize: "clamp(24px, 3vw, 36px)",
+            fontWeight: 800,
+            color: "#0F172A",
+            margin: "0 0 16px",
+            lineHeight: 1.2,
+          }}>
+            Prêt à transformer votre<br />expérience de lecture ?
+          </h2>
+
+          <p style={{
+            fontSize: 16,
+            color: "#64748B",
+            margin: "0 0 32px",
+            lineHeight: 1.7,
+            maxWidth: 480,
+          }}>
+            Rejoignez plus de 50 000 familles qui utilisent Logopédie chaque jour.
+            Aucune carte bancaire requise.
+          </p>
+
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <button
+              onClick={() => navigate("/auth")}
+              style={{
+                height: 48,
+                padding: "0 28px",
+                borderRadius: 10,
+                border: "none",
+                background: "#1A8A6C",
+                color: "#fff",
+                fontSize: 15,
+                fontWeight: 700,
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "0 4px 14px rgba(26,138,108,.25)",
+                transition: "all .2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = "#157A5E"}
+              onMouseLeave={e => e.currentTarget.style.background = "#1A8A6C"}
+            >
+              Commencer gratuitement →
+            </button>
+
+            <button
+              onClick={() => {
+                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              style={{
+                height: 48,
+                padding: "0 24px",
+                borderRadius: 10,
+                border: "1.5px solid #E2E8F0",
+                background: "transparent",
+                color: "#0F172A",
+                fontSize: 15,
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "all .2s",
+              }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "#1A8A6C"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "#E2E8F0"}
+            >
+              Voir les fonctionnalités
+            </button>
+          </div>
+        </div>
+
+        {/* Right: trust badges */}
         <div style={{
-          position: "absolute", top: -40, right: -40, width: 200, height: 200,
-          background: `radial-gradient(circle, ${TEAL}33, transparent)`,
-          borderRadius: "50%",
-        }} />
-        <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🎉</div>
-        <h2 style={{
-          fontFamily: "'Nunito', sans-serif", fontWeight: 900,
-          fontSize: "clamp(1.6rem, 4vw, 2.4rem)", color: "#fff",
-          marginBottom: "1rem", lineHeight: 1.3,
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 14,
+          flexShrink: 0,
         }}>
-          Commencez votre essai gratuit dès aujourd'hui
-        </h2>
-        <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem", lineHeight: 1.8, marginBottom: "2rem", maxWidth: 500, margin: "0 auto 2rem" }}>
-          Sans carte bancaire. Sans engagement. Accédez à toutes les fonctionnalités pendant 14 jours.
-        </p>
-        <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <button style={{
-            background: `linear-gradient(135deg, ${TEAL}, #0F6E56)`,
-            color: "#fff", border: "none",
-            padding: "1rem 2.5rem", borderRadius: 50,
-            fontFamily: "'Nunito', sans-serif", fontWeight: 800, fontSize: "1.05rem",
-            cursor: "pointer", boxShadow: `0 6px 24px ${TEAL}66`,
-          }}>
-             Essayer gratuitement
-          </button>
-          <button style={{
-            background: "transparent", color: "#fff",
-            border: "2px solid rgba(255,255,255,0.3)",
-            padding: "1rem 2.5rem", borderRadius: 50,
-            fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: "1rem",
-            cursor: "pointer",
-          }}>
-            Voir les tarifs
-          </button>
+          {[
+            { icon: "🔒", label: "Données sécurisées", sub: "RGPD conforme" },
+            { icon: "⚡", label: "Accès immédiat", sub: "Sans installation" },
+            { icon: "🎯", label: "Conçu par experts", sub: "Orthophonistes" },
+            { icon: "📱", label: "Multi-appareils", sub: "Web, mobile, tablette" },
+          ].map((item) => (
+            <div key={item.label} style={{
+              background: "#F8FAFC",
+              border: "1px solid #E2E8F0",
+              borderRadius: 12,
+              padding: "14px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+            }}>
+              <span style={{ fontSize: 22 }}>{item.icon}</span>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 13, color: "#0F172A" }}>{item.label}</div>
+                <div style={{ fontSize: 11, color: "#94A3B8", marginTop: 1 }}>{item.sub}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

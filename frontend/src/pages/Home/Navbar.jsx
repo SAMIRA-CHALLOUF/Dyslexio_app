@@ -274,16 +274,24 @@ export default function Navbar({ isLoggedIn, user, onLogin, onSignUp, onLogout }
                   </div>
 
                   <button style={menuItemStyle} onClick={() => { setShowProfileMenu(false); navigate('/profile'); }}>
-                    👤 {t('nav.myProfile')}
+                    {t('nav.myProfile')}
                   </button>
-                  <button style={menuItemStyle}>⚙️ {t('nav.settings')}</button>
-                  <button style={menuItemStyle}>📖 {t('nav.myDocuments')}</button>
+                  
+
+<button
+  style={menuItemStyle}
+  onClick={() => { setShowProfileMenu(false); navigate('/settings'); }}
+>
+  {t('nav.settings')}
+</button>
+
+                  <button style={menuItemStyle}> {t('nav.myDocuments')}</button>
 
                   <div style={{ height: 1, background: '#e2e8f0', margin: '8px 0' }} />
 
                   <button onClick={() => { setShowProfileMenu(false); onLogout(); }}
                     style={{ ...menuItemStyle, color: '#ef4444' }}>
-                    ⬅️ {t('nav.logout')}
+                     {t('nav.logout')}
                   </button>
                 </div>
               )}

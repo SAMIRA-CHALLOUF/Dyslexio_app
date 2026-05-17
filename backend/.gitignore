@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# Piper (modèles ou binaires lourds)
+piper/
+
+# Build
+dist/
+
+# Uploads (optionnel selon ton projet)
+uploads/
+
+
+# Env files
+.env
