@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════
+   DYSLEXIO – Accessibility Fonts
+   ═══════════════════════════════════════════ */
+
+/* Atkinson Hyperlegible – optimized for legibility */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* OpenDyslexic – specialized dyslexia-friendly font */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ═══════════════════════════════════════════
+   CSS Custom Properties (defaults = light theme)
+   Set dynamically by AccessibilityContext.js
+   ═══════════════════════════════════════════ */
+:root {
+  /* Theme colors */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --input-bg: #f8fafc;
+  --input-focus-bg: #ffffff;
+  --card-bg: #ffffff;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --success-bg: #f0fdf4;
+  --success-text: #16a34a;
+  --error-text: #ef4444;
+  --navbar-bg: #ffffff;
+  --navbar-border: #e2e8f0;
+
+  /* Typography */
+  --font-family: 'Atkinson Hyperlegible', sans-serif;
+  --font-size-base: 16px;
+}
+
+/* ═══════════════════════════════════════════
+   Global Application of CSS Variables
+   ═══════════════════════════════════════════ */
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Ensure all elements inherit the font */
+*, *::before, *::after {
+  font-family: inherit;
+}
+
+/* Smooth transitions for theme changes */
+body,
+nav,
+main,
+div,
+section,
+article,
+aside,
+header,
+footer {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════
+   Theme-aware utility overrides
+   These work with the data-theme attribute
+   set by AccessibilityContext
+   ═══════════════════════════════════════════ */
+
+/* Dark theme: override Tailwind bg classes */
+[data-theme="dark"] .bg-white,
+[data-theme="dark"] .bg-slate-50 {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .min-h-screen.bg-slate-50,
+[data-theme="dark"] .min-h-screen {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .text-slate-900,
+[data-theme="dark"] .text-slate-800 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-slate-700,
+[data-theme="dark"] .text-slate-600 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-slate-500,
+[data-theme="dark"] .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .border-slate-200,
+[data-theme="dark"] .border-slate-100 {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .bg-slate-50 {
+  background-color: var(--input-bg) !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .shadow-xl,
+[data-theme="dark"] .shadow-lg,
+[data-theme="dark"] .shadow-sm {
+  --tw-shadow-color: var(--shadow-color) !important;
+}
+
+/* Sepia theme: override Tailwind bg classes */
+[data-theme="sepia"] .bg-white,
+[data-theme="sepia"] .bg-slate-50 {
+  background-color: var(--bg-secondary) !important;
+}
+
+[data-theme="sepia"] .min-h-screen.bg-slate-50,
+[data-theme="sepia"] .min-h-screen {
+  background-color: var(--bg-primary) !important;
+}
+
+[data-theme="sepia"] .text-slate-900,
+[data-theme="sepia"] .text-slate-800 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="sepia"] .text-slate-700,
+[data-theme="sepia"] .text-slate-600 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="sepia"] .text-slate-500,
+[data-theme="sepia"] .text-slate-400 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="sepia"] .border-slate-200,
+[data-theme="sepia"] .border-slate-100 {
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="sepia"] input,
+[data-theme="sepia"] textarea,
+[data-theme="sepia"] select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Settings Page – Theme-aware overrides
+   (for inline-styled components)
+   ═══════════════════════════════════════════ */
+[data-theme="dark"] .settings-card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="sepia"] .settings-card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ═══════════════════════════════════════════
+   Preview banner for live theme preview
+   ═══════════════════════════════════════════ */
+.accessibility-preview {
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 2px dashed var(--border-color);
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  margin-top: 16px;
+  transition: all 0.3s ease;
+}

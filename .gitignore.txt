@@ -1,0 +1,43 @@
+# ==========================
+# Frontend
+# ==========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/.env
+frontend/.env.example
+
+# ==========================
+# Backend
+# ==========================
+backend/node_modules/
+backend/dist/
+backend/uploads/
+backend/piper/
+backend/.env
+backend/.env.example
+
+# ==========================
+# Logs
+# ==========================
+*.log
+logs/
+
+# ==========================
+# IDE
+# ==========================
+.vscode/
+.idea/
+
+# ==========================
+# OS
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Git SSH Keys
+# ==========================
+git_key
+git_key.pub

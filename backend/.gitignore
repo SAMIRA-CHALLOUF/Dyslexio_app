@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+
+# Piper (modèles ou binaires lourds)
+piper/
+
+# Build
+dist/
+
+# Uploads (optionnel selon ton projet)
+uploads/
+
+
+# Env files
+.env
+.env.example
+git_key
+git_key.pub
