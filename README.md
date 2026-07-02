@@ -13,8 +13,7 @@ L'application Dyslexie est une plateforme d'aide à l'apprentissage destinée au
 | Profil | Rôle dans l'application |
 |---|---|
 | Élève dyslexique | Utilisateur principal — lecture, dictée, exercices |
-| Parent | Suivi de la progression, paramétrage |
-| Enseignant | Tableau de bord, rapports, assignation d'exercices |
+| Etablissement | Tableau de bord, ajout eleve|
 | Administrateur | Gestion des comptes, configuration globale |
 
 ### Problématique résolue
